@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkacademy_robotic_sciences=self.webpackChunkacademy_robotic_sciences||[]).push([[1235],{8552:e=>{e.exports=JSON.parse('{"name":"docusaurus-plugin-content-pages","id":"default"}')}}]);

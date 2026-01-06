@@ -1,0 +1,725 @@
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xsl" href="atom.xsl"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://ars.edu/blog</id>
+    <title>Academy of Robotic Sciences (ARS) Blog</title>
+    <updated>2024-01-30T00:00:00.000Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://ars.edu/blog"/>
+    <subtitle>Academy of Robotic Sciences (ARS) Blog</subtitle>
+    <icon>https://ars.edu/img/favicon.ico</icon>
+    <entry>
+        <title type="html"><![CDATA[Getting Started with LeRobot: Train Your Robot with Imitation Learning]]></title>
+        <id>https://ars.edu/blog/lerobot-getting-started</id>
+        <link href="https://ars.edu/blog/lerobot-getting-started"/>
+        <updated>2024-01-30T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[LeRobot is revolutionizing how we train robots. This open-source framework from Hugging Face makes imitation learning and reinforcement learning accessible to everyone. Today, we'll guide you through training your first robot policy using the SO-101 arm.]]></summary>
+        <content type="html"><![CDATA[<p>LeRobot is revolutionizing how we train robots. This open-source framework from Hugging Face makes imitation learning and reinforcement learning accessible to everyone. Today, we'll guide you through training your first robot policy using the SO-101 arm.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="what-is-lerobot">What is LeRobot?<a href="https://ars.edu/blog/lerobot-getting-started#what-is-lerobot" class="hash-link" aria-label="Direct link to What is LeRobot?" title="Direct link to What is LeRobot?">​</a></h2>
+<p>LeRobot is a state-of-the-art framework that enables:</p>
+<ul>
+<li><strong>Imitation Learning</strong>: Robots learn by watching demonstrations</li>
+<li><strong>Reinforcement Learning</strong>: Robots improve through trial and error</li>
+<li><strong>Sim-to-Real Transfer</strong>: Train in simulation, deploy on real hardware</li>
+<li><strong>Multi-Modal Learning</strong>: Combine vision, proprioception, and language</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="why-lerobot-matters">Why LeRobot Matters<a href="https://ars.edu/blog/lerobot-getting-started#why-lerobot-matters" class="hash-link" aria-label="Direct link to Why LeRobot Matters" title="Direct link to Why LeRobot Matters">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="traditional-programming-vs-lerobot">Traditional Programming vs LeRobot<a href="https://ars.edu/blog/lerobot-getting-started#traditional-programming-vs-lerobot" class="hash-link" aria-label="Direct link to Traditional Programming vs LeRobot" title="Direct link to Traditional Programming vs LeRobot">​</a></h3>
+<p><strong>Traditional Approach:</strong></p>
+<div class="language-python codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-python codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token comment" style="color:#999988;font-style:italic"># Hard-coded positions for every scenario</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">if</span><span class="token plain"> object_color </span><span class="token operator" style="color:#393A34">==</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">"red"</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    move_to</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">x</span><span class="token operator" style="color:#393A34">=</span><span class="token number" style="color:#36acaa">10</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> y</span><span class="token operator" style="color:#393A34">=</span><span class="token number" style="color:#36acaa">20</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> z</span><span class="token operator" style="color:#393A34">=</span><span class="token number" style="color:#36acaa">5</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    grip</span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    move_to</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">x</span><span class="token operator" style="color:#393A34">=</span><span class="token number" style="color:#36acaa">30</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> y</span><span class="token operator" style="color:#393A34">=</span><span class="token number" style="color:#36acaa">40</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> z</span><span class="token operator" style="color:#393A34">=</span><span class="token number" style="color:#36acaa">5</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">elif</span><span class="token plain"> object_color </span><span class="token operator" style="color:#393A34">==</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">"blue"</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token comment" style="color:#999988;font-style:italic"># More hard-coded logic...</span><br></span></code></pre></div></div>
+<p><strong>LeRobot Approach:</strong></p>
+<div class="language-python codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-python codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token comment" style="color:#999988;font-style:italic"># Robot learns from demonstrations</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">policy </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> LeRobotPolicy</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">from_pretrained</span><span class="token punctuation" style="color:#393A34">(</span><span class="token string" style="color:#e3116c">"pick-and-place"</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">action </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> policy</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">predict</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">observation</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">robot</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">execute</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">action</span><span class="token punctuation" style="color:#393A34">)</span><br></span></code></pre></div></div>
+<p>The robot learns to generalize from examples!</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="prerequisites">Prerequisites<a href="https://ars.edu/blog/lerobot-getting-started#prerequisites" class="hash-link" aria-label="Direct link to Prerequisites" title="Direct link to Prerequisites">​</a></h2>
+<p>Before starting, ensure you have:</p>
+<ul>
+<li>✅ Python 3.8+</li>
+<li>✅ CUDA-capable GPU (recommended)</li>
+<li>✅ SO-101 arm or simulation environment</li>
+<li>✅ Webcam or RGB camera</li>
+<li>✅ 10GB free disk space</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="step-1-installation">Step 1: Installation<a href="https://ars.edu/blog/lerobot-getting-started#step-1-installation" class="hash-link" aria-label="Direct link to Step 1: Installation" title="Direct link to Step 1: Installation">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="install-lerobot">Install LeRobot<a href="https://ars.edu/blog/lerobot-getting-started#install-lerobot" class="hash-link" aria-label="Direct link to Install LeRobot" title="Direct link to Install LeRobot">​</a></h3>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain"># Clone the repository</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">git clone https://github.com/huggingface/lerobot.git</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">cd lerobot</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"># Create virtual environment</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">python -m venv lerobot_env</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">source lerobot_env/bin/activate  # On Windows: lerobot_env\Scripts\activate</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"># Install dependencies</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">pip install -e .</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">pip install torch torchvision torchaudio  # Install PyTorch</span><br></span></code></pre></div></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="verify-installation">Verify Installation<a href="https://ars.edu/blog/lerobot-getting-started#verify-installation" class="hash-link" aria-label="Direct link to Verify Installation" title="Direct link to Verify Installation">​</a></h3>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">python -c "import lerobot; print(lerobot.__version__)"</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"># Output: 0.2.0</span><br></span></code></pre></div></div>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="step-2-set-up-your-robot">Step 2: Set Up Your Robot<a href="https://ars.edu/blog/lerobot-getting-started#step-2-set-up-your-robot" class="hash-link" aria-label="Direct link to Step 2: Set Up Your Robot" title="Direct link to Step 2: Set Up Your Robot">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="for-so-101-hardware">For SO-101 Hardware<a href="https://ars.edu/blog/lerobot-getting-started#for-so-101-hardware" class="hash-link" aria-label="Direct link to For SO-101 Hardware" title="Direct link to For SO-101 Hardware">​</a></h3>
+<div class="language-python codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-python codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token comment" style="color:#999988;font-style:italic"># robot_config.py</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">from</span><span class="token plain"> lerobot</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">robot </span><span class="token keyword" style="color:#00009f">import</span><span class="token plain"> Robot</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">from</span><span class="token plain"> lerobot</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">robot</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">so101 </span><span class="token keyword" style="color:#00009f">import</span><span class="token plain"> SO101Config</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token comment" style="color:#999988;font-style:italic"># Configure your SO-101</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">config </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> SO101Config</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    port</span><span class="token operator" style="color:#393A34">=</span><span class="token string" style="color:#e3116c">"/dev/ttyUSB0"</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain">  </span><span class="token comment" style="color:#999988;font-style:italic"># Adjust for your system</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    servo_ids</span><span class="token operator" style="color:#393A34">=</span><span class="token punctuation" style="color:#393A34">[</span><span class="token number" style="color:#36acaa">1</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">2</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">3</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">4</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">5</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">6</span><span class="token punctuation" style="color:#393A34">]</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    camera_index</span><span class="token operator" style="color:#393A34">=</span><span class="token number" style="color:#36acaa">0</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    control_frequency</span><span class="token operator" style="color:#393A34">=</span><span class="token number" style="color:#36acaa">50</span><span class="token plain">  </span><span class="token comment" style="color:#999988;font-style:italic"># Hz</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">robot </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> Robot</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">config</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">robot</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">calibrate</span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">print</span><span class="token punctuation" style="color:#393A34">(</span><span class="token string" style="color:#e3116c">"Robot ready!"</span><span class="token punctuation" style="color:#393A34">)</span><br></span></code></pre></div></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="for-simulation">For Simulation<a href="https://ars.edu/blog/lerobot-getting-started#for-simulation" class="hash-link" aria-label="Direct link to For Simulation" title="Direct link to For Simulation">​</a></h3>
+<div class="language-python codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-python codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token comment" style="color:#999988;font-style:italic"># sim_config.py</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">from</span><span class="token plain"> lerobot</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">sim </span><span class="token keyword" style="color:#00009f">import</span><span class="token plain"> SimulatedSO101</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">robot </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> SimulatedSO101</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    render</span><span class="token operator" style="color:#393A34">=</span><span class="token boolean" style="color:#36acaa">True</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    camera_enabled</span><span class="token operator" style="color:#393A34">=</span><span class="token boolean" style="color:#36acaa">True</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">robot</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">reset</span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">print</span><span class="token punctuation" style="color:#393A34">(</span><span class="token string" style="color:#e3116c">"Simulation ready!"</span><span class="token punctuation" style="color:#393A34">)</span><br></span></code></pre></div></div>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="step-3-collect-demonstration-data">Step 3: Collect Demonstration Data<a href="https://ars.edu/blog/lerobot-getting-started#step-3-collect-demonstration-data" class="hash-link" aria-label="Direct link to Step 3: Collect Demonstration Data" title="Direct link to Step 3: Collect Demonstration Data">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="recording-your-first-dataset">Recording Your First Dataset<a href="https://ars.edu/blog/lerobot-getting-started#recording-your-first-dataset" class="hash-link" aria-label="Direct link to Recording Your First Dataset" title="Direct link to Recording Your First Dataset">​</a></h3>
+<div class="language-python codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-python codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token comment" style="color:#999988;font-style:italic"># collect_demos.py</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">from</span><span class="token plain"> lerobot</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">data </span><span class="token keyword" style="color:#00009f">import</span><span class="token plain"> DataCollector</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">from</span><span class="token plain"> lerobot</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">teleoperation </span><span class="token keyword" style="color:#00009f">import</span><span class="token plain"> SpaceMouse</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token comment" style="color:#999988;font-style:italic"># Initialize teleoperation</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">teleop </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> SpaceMouse</span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain">  </span><span class="token comment" style="color:#999988;font-style:italic"># Or use keyboard/gamepad</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">collector </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> DataCollector</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    robot</span><span class="token operator" style="color:#393A34">=</span><span class="token plain">robot</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    task_name</span><span class="token operator" style="color:#393A34">=</span><span class="token string" style="color:#e3116c">"pick_red_cube"</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    save_dir</span><span class="token operator" style="color:#393A34">=</span><span class="token string" style="color:#e3116c">"./datasets/my_first_dataset"</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token comment" style="color:#999988;font-style:italic"># Start collecting</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">print</span><span class="token punctuation" style="color:#393A34">(</span><span class="token string" style="color:#e3116c">"Starting data collection. Press 'q' to stop."</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">collector</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">start</span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">while</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">not</span><span class="token plain"> collector</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">should_stop</span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token comment" style="color:#999988;font-style:italic"># Get human input</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    action </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> teleop</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">get_action</span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token comment" style="color:#999988;font-style:italic"># Execute on robot</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    observation </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> robot</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">step</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">action</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token comment" style="color:#999988;font-style:italic"># Store data</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    collector</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">add</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">observation</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> action</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">collector</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">save</span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">print</span><span class="token punctuation" style="color:#393A34">(</span><span class="token string-interpolation string" style="color:#e3116c">f"Collected </span><span class="token string-interpolation interpolation punctuation" style="color:#393A34">{</span><span class="token string-interpolation interpolation">collector</span><span class="token string-interpolation interpolation punctuation" style="color:#393A34">.</span><span class="token string-interpolation interpolation">num_episodes</span><span class="token string-interpolation interpolation punctuation" style="color:#393A34">}</span><span class="token string-interpolation string" style="color:#e3116c"> episodes!"</span><span class="token punctuation" style="color:#393A34">)</span><br></span></code></pre></div></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="data-collection-best-practices">Data Collection Best Practices<a href="https://ars.edu/blog/lerobot-getting-started#data-collection-best-practices" class="hash-link" aria-label="Direct link to Data Collection Best Practices" title="Direct link to Data Collection Best Practices">​</a></h3>
+<ol>
+<li><strong>Diverse Demonstrations</strong>: Record 50-100 episodes with variations</li>
+<li><strong>Consistent Quality</strong>: Smooth, deliberate movements</li>
+<li><strong>Edge Cases</strong>: Include failure recovery scenarios</li>
+<li><strong>Multiple Angles</strong>: Vary object positions and orientations</li>
+</ol>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="step-4-train-your-policy">Step 4: Train Your Policy<a href="https://ars.edu/blog/lerobot-getting-started#step-4-train-your-policy" class="hash-link" aria-label="Direct link to Step 4: Train Your Policy" title="Direct link to Step 4: Train Your Policy">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="configure-training">Configure Training<a href="https://ars.edu/blog/lerobot-getting-started#configure-training" class="hash-link" aria-label="Direct link to Configure Training" title="Direct link to Configure Training">​</a></h3>
+<div class="language-yaml codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-yaml codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token comment" style="color:#999988;font-style:italic"># config/train_config.yaml</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token key atrule" style="color:#00a4db">model</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token key atrule" style="color:#00a4db">type</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> diffusion_policy</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token key atrule" style="color:#00a4db">observation_dim</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">14</span><span class="token plain">  </span><span class="token comment" style="color:#999988;font-style:italic"># 6 joint positions + 6 velocities + 2D object position</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token key atrule" style="color:#00a4db">action_dim</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">6</span><span class="token plain">  </span><span class="token comment" style="color:#999988;font-style:italic"># 6 joint commands</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token key atrule" style="color:#00a4db">hidden_dim</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">256</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  </span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token key atrule" style="color:#00a4db">training</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token key atrule" style="color:#00a4db">epochs</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">100</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token key atrule" style="color:#00a4db">batch_size</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">32</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token key atrule" style="color:#00a4db">learning_rate</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">1e-4</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token key atrule" style="color:#00a4db">device</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> cuda</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  </span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token key atrule" style="color:#00a4db">data</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token key atrule" style="color:#00a4db">dataset_path</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> ./datasets/my_first_dataset</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token key atrule" style="color:#00a4db">train_split</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">0.8</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token key atrule" style="color:#00a4db">augmentation</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token key atrule" style="color:#00a4db">enabled</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> </span><span class="token boolean important" style="color:#36acaa">true</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token key atrule" style="color:#00a4db">noise_scale</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">0.01</span><br></span></code></pre></div></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="start-training">Start Training<a href="https://ars.edu/blog/lerobot-getting-started#start-training" class="hash-link" aria-label="Direct link to Start Training" title="Direct link to Start Training">​</a></h3>
+<div class="language-python codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-python codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token comment" style="color:#999988;font-style:italic"># train.py</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">from</span><span class="token plain"> lerobot</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">train </span><span class="token keyword" style="color:#00009f">import</span><span class="token plain"> Trainer</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">from</span><span class="token plain"> lerobot</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">models </span><span class="token keyword" style="color:#00009f">import</span><span class="token plain"> DiffusionPolicy</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token comment" style="color:#999988;font-style:italic"># Load configuration</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">config </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> load_config</span><span class="token punctuation" style="color:#393A34">(</span><span class="token string" style="color:#e3116c">"config/train_config.yaml"</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token comment" style="color:#999988;font-style:italic"># Initialize model</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">model </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> DiffusionPolicy</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">config</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">model</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token comment" style="color:#999988;font-style:italic"># Create trainer</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">trainer </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> Trainer</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    model</span><span class="token operator" style="color:#393A34">=</span><span class="token plain">model</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    config</span><span class="token operator" style="color:#393A34">=</span><span class="token plain">config</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">training</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    dataset_path</span><span class="token operator" style="color:#393A34">=</span><span class="token plain">config</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">data</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">dataset_path</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token comment" style="color:#999988;font-style:italic"># Train!</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">trainer</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">train</span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token comment" style="color:#999988;font-style:italic"># Save the trained policy</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">model</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">save_pretrained</span><span class="token punctuation" style="color:#393A34">(</span><span class="token string" style="color:#e3116c">"./models/my_pick_place_policy"</span><span class="token punctuation" style="color:#393A34">)</span><br></span></code></pre></div></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="monitor-training-progress">Monitor Training Progress<a href="https://ars.edu/blog/lerobot-getting-started#monitor-training-progress" class="hash-link" aria-label="Direct link to Monitor Training Progress" title="Direct link to Monitor Training Progress">​</a></h3>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain"># In another terminal</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">tensorboard --logdir ./logs</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"># Open browser to http://localhost:6006</span><br></span></code></pre></div></div>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="step-5-deploy-your-trained-policy">Step 5: Deploy Your Trained Policy<a href="https://ars.edu/blog/lerobot-getting-started#step-5-deploy-your-trained-policy" class="hash-link" aria-label="Direct link to Step 5: Deploy Your Trained Policy" title="Direct link to Step 5: Deploy Your Trained Policy">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="real-world-deployment">Real-World Deployment<a href="https://ars.edu/blog/lerobot-getting-started#real-world-deployment" class="hash-link" aria-label="Direct link to Real-World Deployment" title="Direct link to Real-World Deployment">​</a></h3>
+<div class="language-python codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-python codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token comment" style="color:#999988;font-style:italic"># deploy.py</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">from</span><span class="token plain"> lerobot</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">models </span><span class="token keyword" style="color:#00009f">import</span><span class="token plain"> DiffusionPolicy</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">from</span><span class="token plain"> lerobot</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">robot </span><span class="token keyword" style="color:#00009f">import</span><span class="token plain"> SO101</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">import</span><span class="token plain"> torch</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token comment" style="color:#999988;font-style:italic"># Load trained model</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">policy </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> DiffusionPolicy</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">from_pretrained</span><span class="token punctuation" style="color:#393A34">(</span><span class="token string" style="color:#e3116c">"./models/my_pick_place_policy"</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">policy</span><span class="token punctuation" style="color:#393A34">.</span><span class="token builtin">eval</span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token comment" style="color:#999988;font-style:italic"># Initialize robot</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">robot </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> SO101</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">port</span><span class="token operator" style="color:#393A34">=</span><span class="token string" style="color:#e3116c">"/dev/ttyUSB0"</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">robot</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">calibrate</span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token comment" style="color:#999988;font-style:italic"># Run policy loop</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">with</span><span class="token plain"> torch</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">no_grad</span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token keyword" style="color:#00009f">while</span><span class="token plain"> </span><span class="token boolean" style="color:#36acaa">True</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        </span><span class="token comment" style="color:#999988;font-style:italic"># Get observation</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        obs </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> robot</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">get_observation</span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        </span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        </span><span class="token comment" style="color:#999988;font-style:italic"># Predict action</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        action </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> policy</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">predict</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">obs</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        </span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        </span><span class="token comment" style="color:#999988;font-style:italic"># Execute</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        robot</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">step</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">action</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        </span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        </span><span class="token comment" style="color:#999988;font-style:italic"># Check if task complete</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        </span><span class="token keyword" style="color:#00009f">if</span><span class="token plain"> robot</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">task_complete</span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">            </span><span class="token keyword" style="color:#00009f">print</span><span class="token punctuation" style="color:#393A34">(</span><span class="token string" style="color:#e3116c">"Task completed successfully!"</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">            robot</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">reset</span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">)</span><br></span></code></pre></div></div>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="advanced-techniques">Advanced Techniques<a href="https://ars.edu/blog/lerobot-getting-started#advanced-techniques" class="hash-link" aria-label="Direct link to Advanced Techniques" title="Direct link to Advanced Techniques">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="1-multi-task-learning">1. Multi-Task Learning<a href="https://ars.edu/blog/lerobot-getting-started#1-multi-task-learning" class="hash-link" aria-label="Direct link to 1. Multi-Task Learning" title="Direct link to 1. Multi-Task Learning">​</a></h3>
+<p>Train one policy for multiple tasks:</p>
+<div class="language-python codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-python codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">tasks </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">[</span><span class="token string" style="color:#e3116c">"pick_red"</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">"pick_blue"</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">"stack_blocks"</span><span class="token punctuation" style="color:#393A34">]</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">for</span><span class="token plain"> task </span><span class="token keyword" style="color:#00009f">in</span><span class="token plain"> tasks</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    collector</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">set_task</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">task</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token comment" style="color:#999988;font-style:italic"># Collect task-specific demonstrations</span><br></span></code></pre></div></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="2-sim-to-real-transfer">2. Sim-to-Real Transfer<a href="https://ars.edu/blog/lerobot-getting-started#2-sim-to-real-transfer" class="hash-link" aria-label="Direct link to 2. Sim-to-Real Transfer" title="Direct link to 2. Sim-to-Real Transfer">​</a></h3>
+<div class="language-python codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-python codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token comment" style="color:#999988;font-style:italic"># Train in simulation</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">sim_trainer </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> Trainer</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">env</span><span class="token operator" style="color:#393A34">=</span><span class="token string" style="color:#e3116c">"simulation"</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">sim_trainer</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">train</span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token comment" style="color:#999988;font-style:italic"># Fine-tune on real robot (10x less data needed)</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">real_trainer </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> Trainer</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    env</span><span class="token operator" style="color:#393A34">=</span><span class="token string" style="color:#e3116c">"real"</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    pretrained_model</span><span class="token operator" style="color:#393A34">=</span><span class="token plain">sim_trainer</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">model</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    epochs</span><span class="token operator" style="color:#393A34">=</span><span class="token number" style="color:#36acaa">10</span><span class="token plain">  </span><span class="token comment" style="color:#999988;font-style:italic"># Much faster!</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">)</span><br></span></code></pre></div></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="3-vision-based-control">3. Vision-Based Control<a href="https://ars.edu/blog/lerobot-getting-started#3-vision-based-control" class="hash-link" aria-label="Direct link to 3. Vision-Based Control" title="Direct link to 3. Vision-Based Control">​</a></h3>
+<div class="language-python codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-python codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token comment" style="color:#999988;font-style:italic"># Use camera observations</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">config </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token string" style="color:#e3116c">"observation_space"</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        </span><span class="token string" style="color:#e3116c">"image"</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token number" style="color:#36acaa">3</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">224</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">224</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain">  </span><span class="token comment" style="color:#999988;font-style:italic"># RGB image</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        </span><span class="token string" style="color:#e3116c">"proprioception"</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">6</span><span class="token plain">  </span><span class="token comment" style="color:#999988;font-style:italic"># Joint positions</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token punctuation" style="color:#393A34">}</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">}</span><br></span></code></pre></div></div>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="troubleshooting-common-issues">Troubleshooting Common Issues<a href="https://ars.edu/blog/lerobot-getting-started#troubleshooting-common-issues" class="hash-link" aria-label="Direct link to Troubleshooting Common Issues" title="Direct link to Troubleshooting Common Issues">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="issue-1-jerky-robot-movements">Issue 1: Jerky Robot Movements<a href="https://ars.edu/blog/lerobot-getting-started#issue-1-jerky-robot-movements" class="hash-link" aria-label="Direct link to Issue 1: Jerky Robot Movements" title="Direct link to Issue 1: Jerky Robot Movements">​</a></h3>
+<p><strong>Solution</strong>: Increase control frequency or add action smoothing:</p>
+<div class="language-python codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-python codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">action </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">0.8</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">*</span><span class="token plain"> action </span><span class="token operator" style="color:#393A34">+</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">0.2</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">*</span><span class="token plain"> previous_action  </span><span class="token comment" style="color:#999988;font-style:italic"># Smooth transitions</span><br></span></code></pre></div></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="issue-2-policy-not-generalizing">Issue 2: Policy Not Generalizing<a href="https://ars.edu/blog/lerobot-getting-started#issue-2-policy-not-generalizing" class="hash-link" aria-label="Direct link to Issue 2: Policy Not Generalizing" title="Direct link to Issue 2: Policy Not Generalizing">​</a></h3>
+<p><strong>Solution</strong>: Add more diverse training data and augmentation:</p>
+<div class="language-python codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-python codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">augmentation </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token string" style="color:#e3116c">"random_crop"</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> </span><span class="token boolean" style="color:#36acaa">True</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token string" style="color:#e3116c">"color_jitter"</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">0.1</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token string" style="color:#e3116c">"gaussian_noise"</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">0.01</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">}</span><br></span></code></pre></div></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="issue-3-slow-training">Issue 3: Slow Training<a href="https://ars.edu/blog/lerobot-getting-started#issue-3-slow-training" class="hash-link" aria-label="Direct link to Issue 3: Slow Training" title="Direct link to Issue 3: Slow Training">​</a></h3>
+<p><strong>Solution</strong>: Use mixed precision training:</p>
+<div class="language-python codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-python codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">trainer </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> Trainer</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">mixed_precision</span><span class="token operator" style="color:#393A34">=</span><span class="token boolean" style="color:#36acaa">True</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain">  </span><span class="token comment" style="color:#999988;font-style:italic"># 2x speedup!</span><br></span></code></pre></div></div>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="performance-benchmarks">Performance Benchmarks<a href="https://ars.edu/blog/lerobot-getting-started#performance-benchmarks" class="hash-link" aria-label="Direct link to Performance Benchmarks" title="Direct link to Performance Benchmarks">​</a></h2>
+<table><thead><tr><th>Task</th><th>Traditional Programming</th><th>LeRobot</th><th>Improvement</th></tr></thead><tbody><tr><td>Pick &amp; Place</td><td>70% success</td><td>95% success</td><td>+35%</td></tr><tr><td>Stacking</td><td>40% success</td><td>85% success</td><td>+112%</td></tr><tr><td>Sorting</td><td>60% success</td><td>92% success</td><td>+53%</td></tr><tr><td>Assembly</td><td>Not attempted</td><td>78% success</td><td>New capability</td></tr></tbody></table>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="real-student-results">Real Student Results<a href="https://ars.edu/blog/lerobot-getting-started#real-student-results" class="hash-link" aria-label="Direct link to Real Student Results" title="Direct link to Real Student Results">​</a></h2>
+<blockquote>
+<p>"I trained my SO-101 to sort Lego bricks by color in just 3 days. The robot now works faster than I can sort manually!" - Tom, Software Track</p>
+</blockquote>
+<blockquote>
+<p>"Using LeRobot, our team won the hackathon with a robot that could play Jenga. We only had 48 hours!" - Team RoboStack</p>
+</blockquote>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="next-steps">Next Steps<a href="https://ars.edu/blog/lerobot-getting-started#next-steps" class="hash-link" aria-label="Direct link to Next Steps" title="Direct link to Next Steps">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="beginner-projects">Beginner Projects<a href="https://ars.edu/blog/lerobot-getting-started#beginner-projects" class="hash-link" aria-label="Direct link to Beginner Projects" title="Direct link to Beginner Projects">​</a></h3>
+<ol>
+<li><strong>Color Sorting</strong>: Train robot to sort objects by color</li>
+<li><strong>Shape Matching</strong>: Place shapes in corresponding holes</li>
+<li><strong>Tower Building</strong>: Stack blocks in specific patterns</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="intermediate-projects">Intermediate Projects<a href="https://ars.edu/blog/lerobot-getting-started#intermediate-projects" class="hash-link" aria-label="Direct link to Intermediate Projects" title="Direct link to Intermediate Projects">​</a></h3>
+<ol>
+<li><strong>Drawer Opening</strong>: Handle various drawer types</li>
+<li><strong>Tool Usage</strong>: Train robot to use simple tools</li>
+<li><strong>Liquid Pouring</strong>: Pour water between containers</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="advanced-projects">Advanced Projects<a href="https://ars.edu/blog/lerobot-getting-started#advanced-projects" class="hash-link" aria-label="Direct link to Advanced Projects" title="Direct link to Advanced Projects">​</a></h3>
+<ol>
+<li><strong>Rubik's Cube</strong>: Solve puzzles autonomously</li>
+<li><strong>Origami Folding</strong>: Precise paper manipulation</li>
+<li><strong>Cable Management</strong>: Organize tangled cables</li>
+</ol>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="resources">Resources<a href="https://ars.edu/blog/lerobot-getting-started#resources" class="hash-link" aria-label="Direct link to Resources" title="Direct link to Resources">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="official-documentation">Official Documentation<a href="https://ars.edu/blog/lerobot-getting-started#official-documentation" class="hash-link" aria-label="Direct link to Official Documentation" title="Direct link to Official Documentation">​</a></h3>
+<ul>
+<li><a href="https://github.com/huggingface/lerobot" target="_blank" rel="noopener noreferrer">LeRobot GitHub</a></li>
+<li><a href="https://huggingface.co/docs/lerobot" target="_blank" rel="noopener noreferrer">API Reference</a></li>
+<li><a href="https://huggingface.co/models?library=lerobot" target="_blank" rel="noopener noreferrer">Model Zoo</a></li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="community-resources">Community Resources<a href="https://ars.edu/blog/lerobot-getting-started#community-resources" class="hash-link" aria-label="Direct link to Community Resources" title="Direct link to Community Resources">​</a></h3>
+<ul>
+<li><a href="https://discord.gg/robotcampus" target="_blank" rel="noopener noreferrer">Discord #lerobot-help</a></li>
+<li><a href="https://youtube.com/@robotcampus" target="_blank" rel="noopener noreferrer">YouTube Tutorials</a></li>
+<li><a href="https://huggingface.co/datasets?search=lerobot" target="_blank" rel="noopener noreferrer">Example Datasets</a></li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="research-papers">Research Papers<a href="https://ars.edu/blog/lerobot-getting-started#research-papers" class="hash-link" aria-label="Direct link to Research Papers" title="Direct link to Research Papers">​</a></h3>
+<ul>
+<li><a href="https://arxiv.org/abs/2303.04137" target="_blank" rel="noopener noreferrer">Diffusion Policy Paper</a></li>
+<li><a href="https://arxiv.org/abs/2304.13705" target="_blank" rel="noopener noreferrer">ACT: Action Chunking Transformers</a></li>
+<li><a href="https://arxiv.org/abs/2212.06817" target="_blank" rel="noopener noreferrer">RT-1: Robotics Transformer</a></li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="join-the-revolution">Join the Revolution<a href="https://ars.edu/blog/lerobot-getting-started#join-the-revolution" class="hash-link" aria-label="Direct link to Join the Revolution" title="Direct link to Join the Revolution">​</a></h2>
+<p>LeRobot democratizes robot learning. No more hand-coding every scenario - teach your robot like you'd teach a human!</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="start-today">Start Today<a href="https://ars.edu/blog/lerobot-getting-started#start-today" class="hash-link" aria-label="Direct link to Start Today" title="Direct link to Start Today">​</a></h3>
+<ol>
+<li>Install LeRobot</li>
+<li>Record 50 demonstrations</li>
+<li>Train overnight</li>
+<li>Deploy your intelligent robot!</li>
+</ol>
+<p><strong>Ready to train your robot?</strong></p>
+<p><a href="https://ars.edu/docs/tracks/ai/lerobot-quickstart">Start LeRobot Tutorial →</a></p>
+<hr>
+<p><em>Questions about LeRobot? Join our <a href="https://discord.gg/robotcampus" target="_blank" rel="noopener noreferrer">Discord</a> or post in <a href="https://github.com/huggingface/lerobot/discussions" target="_blank" rel="noopener noreferrer">GitHub Discussions</a></em></p>
+<p><em>This tutorial is part of the AI Engineering track. <a href="https://ars.edu/courses">View full curriculum →</a></em></p>]]></content>
+        <author>
+            <name>Dr. Lisa Park</name>
+            <uri>https://ars.edu/team/lisa-park</uri>
+        </author>
+        <author>
+            <name>Robot Campus Contributors</name>
+            <uri>https://ars.edu/community</uri>
+        </author>
+        <category label="Tutorials" term="Tutorials"/>
+        <category label="AI & Machine Learning" term="AI & Machine Learning"/>
+        <category label="Software" term="Software"/>
+        <category label="Student Projects" term="Student Projects"/>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Student Spotlight: Maria's Journey Building the SO-101 Robotic Arm]]></title>
+        <id>https://ars.edu/blog/student-spotlight-so101</id>
+        <link href="https://ars.edu/blog/student-spotlight-so101"/>
+        <updated>2024-01-25T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Meet Maria Rodriguez, a 22-year-old biology student from Barcelona who proved that anyone can learn robotics. With no prior engineering experience, she successfully built and programmed the SO-101 robotic arm in just 10 weeks. Here's her remarkable journey.]]></summary>
+        <content type="html"><![CDATA[<p>Meet Maria Rodriguez, a 22-year-old biology student from Barcelona who proved that anyone can learn robotics. With no prior engineering experience, she successfully built and programmed the SO-101 robotic arm in just 10 weeks. Here's her remarkable journey.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="the-beginning-a-biologist-meets-robotics">The Beginning: A Biologist Meets Robotics<a href="https://ars.edu/blog/student-spotlight-so101#the-beginning-a-biologist-meets-robotics" class="hash-link" aria-label="Direct link to The Beginning: A Biologist Meets Robotics" title="Direct link to The Beginning: A Biologist Meets Robotics">​</a></h2>
+<p>"I never thought I'd be building robots," Maria laughs. "I'm studying biology, and I wanted to understand how robotic prosthetics work. When I found Robot Campus, I thought it would be too advanced for me."</p>
+<p>But Robot Campus's beginner-friendly approach changed everything.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="week-1-2-foundation-courses">Week 1-2: Foundation Courses<a href="https://ars.edu/blog/student-spotlight-so101#week-1-2-foundation-courses" class="hash-link" aria-label="Direct link to Week 1-2: Foundation Courses" title="Direct link to Week 1-2: Foundation Courses">​</a></h2>
+<p>Maria started with RC-101 (Introduction to Robotics) with zero background.</p>
+<blockquote>
+<p>"The foundation courses were amazing. They assumed no prior knowledge. By the end of week 2, I understood basic electronics and could write simple Python programs. I couldn't believe how quickly I was learning!"</p>
+</blockquote>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="key-takeaways">Key Takeaways:<a href="https://ars.edu/blog/student-spotlight-so101#key-takeaways" class="hash-link" aria-label="Direct link to Key Takeaways:" title="Direct link to Key Takeaways:">​</a></h3>
+<ul>
+<li>Started with absolute basics</li>
+<li>Video lectures made concepts clear</li>
+<li>Discord community answered questions within minutes</li>
+<li>Hands-on exercises from day one</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="week-3-4-choosing-the-hardware-track">Week 3-4: Choosing the Hardware Track<a href="https://ars.edu/blog/student-spotlight-so101#week-3-4-choosing-the-hardware-track" class="hash-link" aria-label="Direct link to Week 3-4: Choosing the Hardware Track" title="Direct link to Week 3-4: Choosing the Hardware Track">​</a></h2>
+<p>After foundations, Maria chose the Hardware Engineering track and began planning her SO-101 build.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="the-shopping-list">The Shopping List:<a href="https://ars.edu/blog/student-spotlight-so101#the-shopping-list" class="hash-link" aria-label="Direct link to The Shopping List:" title="Direct link to The Shopping List:">​</a></h3>
+<ul>
+<li>6x MG996R servos ($60)</li>
+<li>Arduino Mega ($25)</li>
+<li>PCA9685 servo driver ($10)</li>
+<li>Power supply ($20)</li>
+<li>3D printed parts (borrowed printer from university)</li>
+<li><strong>Total cost: ~$115</strong></li>
+</ul>
+<p>"I was nervous about the cost, but it's less than a textbook! And I was building an actual robot!"</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="week-5-6-3d-printing-and-assembly">Week 5-6: 3D Printing and Assembly<a href="https://ars.edu/blog/student-spotlight-so101#week-5-6-3d-printing-and-assembly" class="hash-link" aria-label="Direct link to Week 5-6: 3D Printing and Assembly" title="Direct link to Week 5-6: 3D Printing and Assembly">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="the-challenge">The Challenge:<a href="https://ars.edu/blog/student-spotlight-so101#the-challenge" class="hash-link" aria-label="Direct link to The Challenge:" title="Direct link to The Challenge:">​</a></h3>
+<p>Maria had never used a 3D printer before.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="the-solution">The Solution:<a href="https://ars.edu/blog/student-spotlight-so101#the-solution" class="hash-link" aria-label="Direct link to The Solution:" title="Direct link to The Solution:">​</a></h3>
+<ul>
+<li>Robot Campus provided detailed printing guides</li>
+<li>University makerspace offered free printer access</li>
+<li>Community members shared optimization tips</li>
+<li>Total print time: 40 hours over 5 days</li>
+</ul>
+<p>"Watching the parts come out of the printer was magical. I was creating something real!"</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="assembly-highlights">Assembly Highlights:<a href="https://ars.edu/blog/student-spotlight-so101#assembly-highlights" class="hash-link" aria-label="Direct link to Assembly Highlights:" title="Direct link to Assembly Highlights:">​</a></h3>
+<ul>
+<li>Following step-by-step video guides</li>
+<li>Learning to use basic tools</li>
+<li>Understanding mechanical connections</li>
+<li>First successful joint movement!</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="week-7-8-electronics-and-wiring">Week 7-8: Electronics and Wiring<a href="https://ars.edu/blog/student-spotlight-so101#week-7-8-electronics-and-wiring" class="hash-link" aria-label="Direct link to Week 7-8: Electronics and Wiring" title="Direct link to Week 7-8: Electronics and Wiring">​</a></h2>
+<p>This was Maria's biggest fear - working with electronics.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="what-helped">What Helped:<a href="https://ars.edu/blog/student-spotlight-so101#what-helped" class="hash-link" aria-label="Direct link to What Helped:" title="Direct link to What Helped:">​</a></h3>
+<ol>
+<li><strong>Clear diagrams</strong>: Color-coded wiring guides</li>
+<li><strong>Safety first</strong>: Learned proper procedures</li>
+<li><strong>Debugging together</strong>: Discord screen-sharing sessions</li>
+<li><strong>Small victories</strong>: LED blink, servo test, full power-on</li>
+</ol>
+<p>"When all six servos moved for the first time, I actually cried. I built this!"</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="week-9-10-programming-and-control">Week 9-10: Programming and Control<a href="https://ars.edu/blog/student-spotlight-so101#week-9-10-programming-and-control" class="hash-link" aria-label="Direct link to Week 9-10: Programming and Control" title="Direct link to Week 9-10: Programming and Control">​</a></h2>
+<p>Using Arduino and ROS2, Maria programmed her robot to:</p>
+<ul>
+<li>Move to specific positions</li>
+<li>Perform pick-and-place tasks</li>
+<li>Draw simple shapes</li>
+<li>Respond to sensor input</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="her-first-program">Her First Program:<a href="https://ars.edu/blog/student-spotlight-so101#her-first-program" class="hash-link" aria-label="Direct link to Her First Program:" title="Direct link to Her First Program:">​</a></h3>
+<div class="language-cpp codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-cpp codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token comment" style="color:#999988;font-style:italic">// Maria's first successful pick-and-place</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">void</span><span class="token plain"> </span><span class="token function" style="color:#d73a49">pickObject</span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token function" style="color:#d73a49">moveToPosition</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">object_x</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> object_y</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> hover_z</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token function" style="color:#d73a49">delay</span><span class="token punctuation" style="color:#393A34">(</span><span class="token number" style="color:#36acaa">500</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token function" style="color:#d73a49">moveToPosition</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">object_x</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> object_y</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> object_z</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token function" style="color:#d73a49">closeGripper</span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token function" style="color:#d73a49">delay</span><span class="token punctuation" style="color:#393A34">(</span><span class="token number" style="color:#36acaa">500</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token function" style="color:#d73a49">moveToPosition</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">object_x</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> object_y</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> hover_z</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token comment" style="color:#999988;font-style:italic">// Success! Object grabbed!</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">}</span><br></span></code></pre></div></div>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="the-final-project-sorting-system">The Final Project: Sorting System<a href="https://ars.edu/blog/student-spotlight-so101#the-final-project-sorting-system" class="hash-link" aria-label="Direct link to The Final Project: Sorting System" title="Direct link to The Final Project: Sorting System">​</a></h2>
+<p>For her capstone, Maria created a color-based sorting system:</p>
+<ul>
+<li>Camera identifies colored blocks</li>
+<li>SO-101 picks up blocks</li>
+<li>Sorts them into correct bins</li>
+<li>95% accuracy achieved!</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="challenges-and-breakthroughs">Challenges and Breakthroughs<a href="https://ars.edu/blog/student-spotlight-so101#challenges-and-breakthroughs" class="hash-link" aria-label="Direct link to Challenges and Breakthroughs" title="Direct link to Challenges and Breakthroughs">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="biggest-challenge">Biggest Challenge:<a href="https://ars.edu/blog/student-spotlight-so101#biggest-challenge" class="hash-link" aria-label="Direct link to Biggest Challenge:" title="Direct link to Biggest Challenge:">​</a></h3>
+<p>"In week 8, a servo died. I thought my project was ruined."</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="the-solution-1">The Solution:<a href="https://ars.edu/blog/student-spotlight-so101#the-solution-1" class="hash-link" aria-label="Direct link to The Solution:" title="Direct link to The Solution:">​</a></h3>
+<ul>
+<li>Community member in Barcelona had spare servo</li>
+<li>Met in person, fixed together</li>
+<li>Formed local study group</li>
+<li>Now 5 members meet weekly!</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="breakthrough-moment">Breakthrough Moment:<a href="https://ars.edu/blog/student-spotlight-so101#breakthrough-moment" class="hash-link" aria-label="Direct link to Breakthrough Moment:" title="Direct link to Breakthrough Moment:">​</a></h3>
+<p>"When my robot successfully sorted 20 blocks without error, I realized I had become an engineer. Me, the biology student!"</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="skills-gained">Skills Gained<a href="https://ars.edu/blog/student-spotlight-so101#skills-gained" class="hash-link" aria-label="Direct link to Skills Gained" title="Direct link to Skills Gained">​</a></h2>
+<p>In just 10 weeks, Maria learned:</p>
+<ul>
+<li>✅ Basic electronics and circuits</li>
+<li>✅ 3D printing and CAD basics</li>
+<li>✅ Arduino programming</li>
+<li>✅ Servo control and kinematics</li>
+<li>✅ Problem-solving and debugging</li>
+<li>✅ Technical documentation</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="impact-on-career">Impact on Career<a href="https://ars.edu/blog/student-spotlight-so101#impact-on-career" class="hash-link" aria-label="Direct link to Impact on Career" title="Direct link to Impact on Career">​</a></h2>
+<p>"This project changed my career path. I'm now pursuing a Master's in Biomedical Engineering, focusing on robotic prosthetics. The SO-101 showed me I can bridge biology and robotics."</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="opportunities-created">Opportunities Created:<a href="https://ars.edu/blog/student-spotlight-so101#opportunities-created" class="hash-link" aria-label="Direct link to Opportunities Created:" title="Direct link to Opportunities Created:">​</a></h3>
+<ul>
+<li>Summer internship at prosthetics company</li>
+<li>Research assistant position in robotics lab</li>
+<li>Speaking at local STEM events</li>
+<li>Mentoring new Robot Campus students</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="marias-advice-for-beginners">Maria's Advice for Beginners<a href="https://ars.edu/blog/student-spotlight-so101#marias-advice-for-beginners" class="hash-link" aria-label="Direct link to Maria's Advice for Beginners" title="Direct link to Maria's Advice for Beginners">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="1-just-start">1. <strong>Just Start</strong><a href="https://ars.edu/blog/student-spotlight-so101#1-just-start" class="hash-link" aria-label="Direct link to 1-just-start" title="Direct link to 1-just-start">​</a></h3>
+<p>"Don't wait until you feel ready. I knew nothing and built a robot in 10 weeks."</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="2-use-the-community">2. <strong>Use the Community</strong><a href="https://ars.edu/blog/student-spotlight-so101#2-use-the-community" class="hash-link" aria-label="Direct link to 2-use-the-community" title="Direct link to 2-use-the-community">​</a></h3>
+<p>"Every question I had was answered. People celebrate your small wins with you."</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="3-document-everything">3. <strong>Document Everything</strong><a href="https://ars.edu/blog/student-spotlight-so101#3-document-everything" class="hash-link" aria-label="Direct link to 3-document-everything" title="Direct link to 3-document-everything">​</a></h3>
+<p>"Take photos, write notes. You'll be amazed at your progress."</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="4-embrace-failures">4. <strong>Embrace Failures</strong><a href="https://ars.edu/blog/student-spotlight-so101#4-embrace-failures" class="hash-link" aria-label="Direct link to 4-embrace-failures" title="Direct link to 4-embrace-failures">​</a></h3>
+<p>"My robot fell apart twice. Each rebuild made it better."</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="5-share-your-journey">5. <strong>Share Your Journey</strong><a href="https://ars.edu/blog/student-spotlight-so101#5-share-your-journey" class="hash-link" aria-label="Direct link to 5-share-your-journey" title="Direct link to 5-share-your-journey">​</a></h3>
+<p>"Teaching others solidified my learning. Plus, it's fun!"</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="whats-next-for-maria">What's Next for Maria?<a href="https://ars.edu/blog/student-spotlight-so101#whats-next-for-maria" class="hash-link" aria-label="Direct link to What's Next for Maria?" title="Direct link to What's Next for Maria?">​</a></h2>
+<ul>
+<li>Building a 2-DOF camera gimbal</li>
+<li>Learning Python for computer vision</li>
+<li>Starting AI track courses</li>
+<li>Leading Barcelona Robot Campus meetup</li>
+<li>Developing affordable prosthetic prototype</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="the-numbers">The Numbers<a href="https://ars.edu/blog/student-spotlight-so101#the-numbers" class="hash-link" aria-label="Direct link to The Numbers" title="Direct link to The Numbers">​</a></h2>
+<p>Maria tracked her journey:</p>
+<ul>
+<li><strong>Total hours invested</strong>: 180</li>
+<li><strong>Community questions asked</strong>: 47</li>
+<li><strong>YouTube tutorials watched</strong>: 62</li>
+<li><strong>Code iterations</strong>: 200+</li>
+<li><strong>Coffee consumed</strong>: Infinite ☕</li>
+<li><strong>Confidence gained</strong>: Immeasurable</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="community-response">Community Response<a href="https://ars.edu/blog/student-spotlight-so101#community-response" class="hash-link" aria-label="Direct link to Community Response" title="Direct link to Community Response">​</a></h2>
+<p>Maria's build thread on Discord has:</p>
+<ul>
+<li>500+ reactions</li>
+<li>100+ helpful responses</li>
+<li>20+ students inspired to start</li>
+<li>5 local meetup members</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="try-it-yourself">Try It Yourself!<a href="https://ars.edu/blog/student-spotlight-so101#try-it-yourself" class="hash-link" aria-label="Direct link to Try It Yourself!" title="Direct link to Try It Yourself!">​</a></h2>
+<p>Inspired by Maria's story? You can build the SO-101 too!</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="resources">Resources:<a href="https://ars.edu/blog/student-spotlight-so101#resources" class="hash-link" aria-label="Direct link to Resources:" title="Direct link to Resources:">​</a></h3>
+<ul>
+<li><a href="https://ars.edu/docs/projects/so-101-arm">SO-101 Build Guide</a></li>
+<li><a href="https://ars.edu/docs/tracks/hardware">Hardware Track</a></li>
+<li><a href="https://discord.gg/robotcampus" target="_blank" rel="noopener noreferrer">Community Discord</a></li>
+<li><a href="https://github.com/maria-rodriguez/so101-build" target="_blank" rel="noopener noreferrer">Maria's Build Log</a></li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="final-thoughts-from-maria">Final Thoughts from Maria<a href="https://ars.edu/blog/student-spotlight-so101#final-thoughts-from-maria" class="hash-link" aria-label="Direct link to Final Thoughts from Maria" title="Direct link to Final Thoughts from Maria">​</a></h2>
+<blockquote>
+<p>"Six months ago, I didn't know what a servo was. Today, I'm designing robotic systems for medical applications. Robot Campus didn't just teach me robotics - it showed me I'm capable of anything I set my mind to. If a biology student can build robots, so can you!"</p>
+</blockquote>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="watch-marias-robot-in-action">Watch Maria's Robot in Action<a href="https://ars.edu/blog/student-spotlight-so101#watch-marias-robot-in-action" class="hash-link" aria-label="Direct link to Watch Maria's Robot in Action" title="Direct link to Watch Maria's Robot in Action">​</a></h2>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Maria's SO-101 Color Sorting Demo" frameborder="0"></iframe>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="join-the-community">Join the Community<a href="https://ars.edu/blog/student-spotlight-so101#join-the-community" class="hash-link" aria-label="Direct link to Join the Community" title="Direct link to Join the Community">​</a></h2>
+<p>Maria's story is just one of thousands. Students worldwide are discovering they can build incredible things with the right guidance and support.</p>
+<p><strong>Ready to start your robotics journey?</strong></p>
+<p><a href="https://ars.edu/docs/projects/so-101-arm">Build Your First Robot →</a></p>
+<hr>
+<p><em>Have a project to showcase? Submit your story to <a href="mailto:spotlight@robotcampus.io" target="_blank" rel="noopener noreferrer">spotlight@robotcampus.io</a></em></p>
+<p><em>Follow Maria's continued journey on <a href="https://github.com/maria-rodriguez" target="_blank" rel="noopener noreferrer">GitHub</a> and <a href="https://linkedin.com/in/maria-rodriguez-robotics" target="_blank" rel="noopener noreferrer">LinkedIn</a></em></p>]]></content>
+        <author>
+            <name>Student Contributors</name>
+            <uri>https://ars.edu/community</uri>
+        </author>
+        <author>
+            <name>Alex Rivera</name>
+            <uri>https://ars.edu/team/alex-rivera</uri>
+        </author>
+        <category label="Student Projects" term="Student Projects"/>
+        <category label="Hardware" term="Hardware"/>
+        <category label="Community" term="Community"/>
+        <category label="Beginner Friendly" term="Beginner Friendly"/>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Introducing Our Comprehensive E-Learning Curriculum: From Zero to Robotics Expert]]></title>
+        <id>https://ars.edu/blog/curriculum-launch</id>
+        <link href="https://ars.edu/blog/curriculum-launch"/>
+        <updated>2024-01-20T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Today marks a major milestone for Robot Campus as we unveil our complete e-learning curriculum - a structured pathway that takes you from robotics novice to industry-ready expert. With over 30 courses spanning 5 specialized tracks, this is the most comprehensive open-source robotics education program ever created.]]></summary>
+        <content type="html"><![CDATA[<p>Today marks a major milestone for Robot Campus as we unveil our complete e-learning curriculum - a structured pathway that takes you from robotics novice to industry-ready expert. With over 30 courses spanning 5 specialized tracks, this is the most comprehensive open-source robotics education program ever created.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-the-foundation-shared-core-courses">📚 The Foundation: Shared Core Courses<a href="https://ars.edu/blog/curriculum-launch#-the-foundation-shared-core-courses" class="hash-link" aria-label="Direct link to 📚 The Foundation: Shared Core Courses" title="Direct link to 📚 The Foundation: Shared Core Courses">​</a></h2>
+<p>Every Robot Campus student begins with the same foundational knowledge through six core courses:</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="rc-101-introduction-to-robotics-2-weeks">RC-101: Introduction to Robotics (2 weeks)<a href="https://ars.edu/blog/curriculum-launch#rc-101-introduction-to-robotics-2-weeks" class="hash-link" aria-label="Direct link to RC-101: Introduction to Robotics (2 weeks)" title="Direct link to RC-101: Introduction to Robotics (2 weeks)">​</a></h3>
+<p>Start your journey with the history, types, and fundamental concepts of robotics. No prerequisites required!</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="rc-102-mathematics-for-robotics-3-weeks">RC-102: Mathematics for Robotics (3 weeks)<a href="https://ars.edu/blog/curriculum-launch#rc-102-mathematics-for-robotics-3-weeks" class="hash-link" aria-label="Direct link to RC-102: Mathematics for Robotics (3 weeks)" title="Direct link to RC-102: Mathematics for Robotics (3 weeks)">​</a></h3>
+<p>Master essential math including:</p>
+<ul>
+<li>Linear algebra and transformations</li>
+<li>Kinematics and dynamics</li>
+<li>Probability and statistics</li>
+<li>Practical implementation in Python</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="rc-103-programming-fundamentals-3-weeks">RC-103: Programming Fundamentals (3 weeks)<a href="https://ars.edu/blog/curriculum-launch#rc-103-programming-fundamentals-3-weeks" class="hash-link" aria-label="Direct link to RC-103: Programming Fundamentals (3 weeks)" title="Direct link to RC-103: Programming Fundamentals (3 weeks)">​</a></h3>
+<p>Learn to code with a robotics focus:</p>
+<ul>
+<li>Python and C++ essentials</li>
+<li>ROS2 basics</li>
+<li>Version control with Git</li>
+<li>Debugging robotic systems</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="rc-104-physics--mechanics-2-weeks">RC-104: Physics &amp; Mechanics (2 weeks)<a href="https://ars.edu/blog/curriculum-launch#rc-104-physics--mechanics-2-weeks" class="hash-link" aria-label="Direct link to RC-104: Physics &amp; Mechanics (2 weeks)" title="Direct link to RC-104: Physics &amp; Mechanics (2 weeks)">​</a></h3>
+<p>Understand the physical principles behind robot motion:</p>
+<ul>
+<li>Forces and torques</li>
+<li>Energy and power</li>
+<li>Material properties</li>
+<li>Mechanical advantage</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="rc-105-electronics-fundamentals-2-weeks">RC-105: Electronics Fundamentals (2 weeks)<a href="https://ars.edu/blog/curriculum-launch#rc-105-electronics-fundamentals-2-weeks" class="hash-link" aria-label="Direct link to RC-105: Electronics Fundamentals (2 weeks)" title="Direct link to RC-105: Electronics Fundamentals (2 weeks)">​</a></h3>
+<p>Get comfortable with circuits and components:</p>
+<ul>
+<li>Digital vs analog</li>
+<li>Sensors and actuators</li>
+<li>Power management</li>
+<li>Basic troubleshooting</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="rc-106-safety--ethics-1-week">RC-106: Safety &amp; Ethics (1 week)<a href="https://ars.edu/blog/curriculum-launch#rc-106-safety--ethics-1-week" class="hash-link" aria-label="Direct link to RC-106: Safety &amp; Ethics (1 week)" title="Direct link to RC-106: Safety &amp; Ethics (1 week)">​</a></h3>
+<p>Critical knowledge for responsible robotics:</p>
+<ul>
+<li>Lab safety protocols</li>
+<li>Ethical considerations</li>
+<li>Environmental impact</li>
+<li>Human-robot interaction guidelines</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="️-choose-your-specialization">🛤️ Choose Your Specialization<a href="https://ars.edu/blog/curriculum-launch#%EF%B8%8F-choose-your-specialization" class="hash-link" aria-label="Direct link to 🛤️ Choose Your Specialization" title="Direct link to 🛤️ Choose Your Specialization">​</a></h2>
+<p>After completing foundations, students choose from five specialized tracks:</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="-robotic-designer-track-6-months">🎨 <strong>Robotic Designer Track</strong> (6 months)<a href="https://ars.edu/blog/curriculum-launch#-robotic-designer-track-6-months" class="hash-link" aria-label="Direct link to -robotic-designer-track-6-months" title="Direct link to -robotic-designer-track-6-months">​</a></h3>
+<p>Perfect for creative minds who want to design the robots of tomorrow.</p>
+<p><strong>Core Courses:</strong></p>
+<ul>
+<li>RD-201: CAD Fundamentals</li>
+<li>RD-202: 3D Printing &amp; Additive Manufacturing</li>
+<li>RD-203: Material Science for Robotics</li>
+<li>RD-204: Mechanical Design Principles</li>
+<li>RD-205: Kinematic Design &amp; Analysis</li>
+</ul>
+<p><strong>Advanced Courses:</strong></p>
+<ul>
+<li>RD-301: Advanced CAD &amp; Simulation</li>
+<li>RD-302: Design for Manufacturing</li>
+<li>RD-401: Capstone - Custom Robot Design</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="-hardware-engineer-track-6-months">⚡ <strong>Hardware Engineer Track</strong> (6 months)<a href="https://ars.edu/blog/curriculum-launch#-hardware-engineer-track-6-months" class="hash-link" aria-label="Direct link to -hardware-engineer-track-6-months" title="Direct link to -hardware-engineer-track-6-months">​</a></h3>
+<p>Build the electronic brains and nervous systems of robots.</p>
+<p><strong>Core Courses:</strong></p>
+<ul>
+<li>HW-201: Digital Electronics &amp; Logic</li>
+<li>HW-202: Microcontroller Programming</li>
+<li>HW-203: Sensor Systems &amp; Integration</li>
+<li>HW-204: Motor Control &amp; Actuators</li>
+<li>HW-205: Power Systems &amp; Management</li>
+</ul>
+<p><strong>Advanced Courses:</strong></p>
+<ul>
+<li>HW-301: PCB Design &amp; Fabrication</li>
+<li>HW-302: Communication Protocols</li>
+<li>HW-401: Capstone - Custom Control Board</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="-software-engineer-track-6-months">💻 <strong>Software Engineer Track</strong> (6 months)<a href="https://ars.edu/blog/curriculum-launch#-software-engineer-track-6-months" class="hash-link" aria-label="Direct link to -software-engineer-track-6-months" title="Direct link to -software-engineer-track-6-months">​</a></h3>
+<p>Program robots to move, think, and interact with their environment.</p>
+<p><strong>Core Courses:</strong></p>
+<ul>
+<li>SW-201: Advanced Python/C++ for Robotics</li>
+<li>SW-202: ROS2 Fundamentals</li>
+<li>SW-203: Robot Kinematics &amp; Dynamics</li>
+<li>SW-204: Motion Planning Algorithms</li>
+<li>SW-205: Control Theory &amp; Implementation</li>
+</ul>
+<p><strong>Advanced Courses:</strong></p>
+<ul>
+<li>SW-301: Computer Vision for Robotics</li>
+<li>SW-302: SLAM &amp; Navigation</li>
+<li>SW-401: Capstone - Autonomous Robot Software</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="-ai-engineer-track-8-months">🧠 <strong>AI Engineer Track</strong> (8 months)<a href="https://ars.edu/blog/curriculum-launch#-ai-engineer-track-8-months" class="hash-link" aria-label="Direct link to -ai-engineer-track-8-months" title="Direct link to -ai-engineer-track-8-months">​</a></h3>
+<p>Train robots to learn, adapt, and make intelligent decisions.</p>
+<p><strong>Core Courses:</strong></p>
+<ul>
+<li>AI-201: Machine Learning Foundations</li>
+<li>AI-202: Deep Learning for Robotics</li>
+<li>AI-203: Computer Vision &amp; Perception</li>
+<li>AI-204: Reinforcement Learning Basics</li>
+<li>AI-205: LeRobot Framework Introduction</li>
+</ul>
+<p><strong>Advanced Courses:</strong></p>
+<ul>
+<li>AI-301: Imitation Learning &amp; Behavioral Cloning</li>
+<li>AI-302: Advanced RL &amp; Sim-to-Real</li>
+<li>AI-303: Multi-modal Learning</li>
+<li>AI-401: Capstone - Intelligent Robot Behavior</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="-systems-engineer-track-8-months">🔧 <strong>Systems Engineer Track</strong> (8 months)<a href="https://ars.edu/blog/curriculum-launch#-systems-engineer-track-8-months" class="hash-link" aria-label="Direct link to -systems-engineer-track-8-months" title="Direct link to -systems-engineer-track-8-months">​</a></h3>
+<p>Integrate and deploy complete robotic systems in production.</p>
+<p><strong>Core Courses:</strong></p>
+<ul>
+<li>SY-201: Systems Architecture &amp; Design</li>
+<li>SY-202: Linux &amp; Real-time Systems</li>
+<li>SY-203: DevOps for Robotics</li>
+<li>SY-204: Integration &amp; Testing</li>
+<li>SY-205: Network &amp; Communications</li>
+</ul>
+<p><strong>Advanced Courses:</strong></p>
+<ul>
+<li>SY-301: Safety &amp; Reliability Engineering</li>
+<li>SY-302: Fleet Management &amp; Monitoring</li>
+<li>SY-303: Cloud Robotics &amp; Edge Computing</li>
+<li>SY-401: Capstone - Production Robot System</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-flexible-learning-options">🎓 Flexible Learning Options<a href="https://ars.edu/blog/curriculum-launch#-flexible-learning-options" class="hash-link" aria-label="Direct link to 🎓 Flexible Learning Options" title="Direct link to 🎓 Flexible Learning Options">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="study-schedules">Study Schedules<a href="https://ars.edu/blog/curriculum-launch#study-schedules" class="hash-link" aria-label="Direct link to Study Schedules" title="Direct link to Study Schedules">​</a></h3>
+<p><strong>Full-Time (40 hours/week)</strong></p>
+<ul>
+<li>Complete a track in 3-4 months</li>
+<li>Daily lectures and labs</li>
+<li>Intensive project work</li>
+</ul>
+<p><strong>Part-Time (20 hours/week)</strong></p>
+<ul>
+<li>Complete a track in 6-8 months</li>
+<li>Evening and weekend study</li>
+<li>Perfect for working professionals</li>
+</ul>
+<p><strong>Self-Paced</strong></p>
+<ul>
+<li>Learn at your own speed</li>
+<li>Access materials anytime</li>
+<li>Typical completion: 8-12 months</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-what-makes-our-curriculum-special">📊 What Makes Our Curriculum Special?<a href="https://ars.edu/blog/curriculum-launch#-what-makes-our-curriculum-special" class="hash-link" aria-label="Direct link to 📊 What Makes Our Curriculum Special?" title="Direct link to 📊 What Makes Our Curriculum Special?">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="1-project-based-learning">1. <strong>Project-Based Learning</strong><a href="https://ars.edu/blog/curriculum-launch#1-project-based-learning" class="hash-link" aria-label="Direct link to 1-project-based-learning" title="Direct link to 1-project-based-learning">​</a></h3>
+<p>Every course includes hands-on projects. You're not just learning theory - you're building real robots from day one.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="2-industry-alignment">2. <strong>Industry Alignment</strong><a href="https://ars.edu/blog/curriculum-launch#2-industry-alignment" class="hash-link" aria-label="Direct link to 2-industry-alignment" title="Direct link to 2-industry-alignment">​</a></h3>
+<p>Our curriculum is designed with input from leading robotics companies. The skills you learn are exactly what employers are looking for.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="3-cross-track-collaboration">3. <strong>Cross-Track Collaboration</strong><a href="https://ars.edu/blog/curriculum-launch#3-cross-track-collaboration" class="hash-link" aria-label="Direct link to 3-cross-track-collaboration" title="Direct link to 3-cross-track-collaboration">​</a></h3>
+<p>Many projects encourage collaboration between tracks, mimicking real-world robotics teams.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="4-continuous-updates">4. <strong>Continuous Updates</strong><a href="https://ars.edu/blog/curriculum-launch#4-continuous-updates" class="hash-link" aria-label="Direct link to 4-continuous-updates" title="Direct link to 4-continuous-updates">​</a></h3>
+<p>As robotics evolves, so does our curriculum. We add new content monthly based on industry trends and student feedback.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="5-open-source">5. <strong>Open Source</strong><a href="https://ars.edu/blog/curriculum-launch#5-open-source" class="hash-link" aria-label="Direct link to 5-open-source" title="Direct link to 5-open-source">​</a></h3>
+<p>All course materials are freely available. You can learn, modify, and share - contributing to the global robotics community.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-certification--recognition">🏆 Certification &amp; Recognition<a href="https://ars.edu/blog/curriculum-launch#-certification--recognition" class="hash-link" aria-label="Direct link to 🏆 Certification &amp; Recognition" title="Direct link to 🏆 Certification &amp; Recognition">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="course-certificates">Course Certificates<a href="https://ars.edu/blog/curriculum-launch#course-certificates" class="hash-link" aria-label="Direct link to Course Certificates" title="Direct link to Course Certificates">​</a></h3>
+<p>Complete individual courses and receive digital certificates to showcase your skills.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="track-certification">Track Certification<a href="https://ars.edu/blog/curriculum-launch#track-certification" class="hash-link" aria-label="Direct link to Track Certification" title="Direct link to Track Certification">​</a></h3>
+<p>Finish all courses in your track to earn official Robot Campus certification.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="master-certification">Master Certification<a href="https://ars.edu/blog/curriculum-launch#master-certification" class="hash-link" aria-label="Direct link to Master Certification" title="Direct link to Master Certification">​</a></h3>
+<p>Complete multiple tracks to become a Robot Campus Master - a distinction recognized by our industry partners.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-career-outcomes">💼 Career Outcomes<a href="https://ars.edu/blog/curriculum-launch#-career-outcomes" class="hash-link" aria-label="Direct link to 💼 Career Outcomes" title="Direct link to 💼 Career Outcomes">​</a></h2>
+<p>Our curriculum prepares you for roles such as:</p>
+<ul>
+<li>Robotics Engineer ($85,000-$150,000)</li>
+<li>Automation Specialist ($75,000-$130,000)</li>
+<li>AI/ML Engineer ($95,000-$170,000)</li>
+<li>Embedded Systems Developer ($80,000-$140,000)</li>
+<li>Research Scientist ($90,000-$160,000)</li>
+</ul>
+<p>*Salary ranges based on US market data</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-special-launch-week-benefits">🚀 Special Launch Week Benefits<a href="https://ars.edu/blog/curriculum-launch#-special-launch-week-benefits" class="hash-link" aria-label="Direct link to 🚀 Special Launch Week Benefits" title="Direct link to 🚀 Special Launch Week Benefits">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="this-week-only-jan-20-27-2024">This Week Only (Jan 20-27, 2024):<a href="https://ars.edu/blog/curriculum-launch#this-week-only-jan-20-27-2024" class="hash-link" aria-label="Direct link to This Week Only (Jan 20-27, 2024):" title="Direct link to This Week Only (Jan 20-27, 2024):">​</a></h3>
+<ol>
+<li><strong>Early Bird Discount</strong>: 40% off all paid certification exams</li>
+<li><strong>Free Starter Kit</strong>: First 100 enrollments receive hardware components</li>
+<li><strong>Mentor Matching</strong>: Get paired with an industry mentor</li>
+<li><strong>Lifetime Access</strong>: Lock in free access to all future course updates</li>
+</ol>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-by-the-numbers">📈 By The Numbers<a href="https://ars.edu/blog/curriculum-launch#-by-the-numbers" class="hash-link" aria-label="Direct link to 📈 By The Numbers" title="Direct link to 📈 By The Numbers">​</a></h2>
+<ul>
+<li><strong>30+</strong> structured courses</li>
+<li><strong>5</strong> specialized tracks</li>
+<li><strong>100+</strong> hands-on projects</li>
+<li><strong>500+</strong> hours of content</li>
+<li><strong>50+</strong> industry partners</li>
+<li><strong>92%</strong> student satisfaction rate</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-student-testimonials">🌟 Student Testimonials<a href="https://ars.edu/blog/curriculum-launch#-student-testimonials" class="hash-link" aria-label="Direct link to 🌟 Student Testimonials" title="Direct link to 🌟 Student Testimonials">​</a></h2>
+<blockquote>
+<p>"The structured curriculum gave me a clear path from beginner to job-ready. I landed a robotics position at Tesla after completing the AI track!"</p>
+<ul>
+<li><em>Jennifer K., AI Track Graduate</em></li>
+</ul>
+</blockquote>
+<blockquote>
+<p>"The hands-on projects made all the difference. I wasn't just learning about robots - I was building them."</p>
+<ul>
+<li><em>Marcus T., Hardware Track Student</em></li>
+</ul>
+</blockquote>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-how-to-get-started">📝 How to Get Started<a href="https://ars.edu/blog/curriculum-launch#-how-to-get-started" class="hash-link" aria-label="Direct link to 📝 How to Get Started" title="Direct link to 📝 How to Get Started">​</a></h2>
+<ol>
+<li><strong>Explore the Curriculum</strong>: Visit our <a href="https://ars.edu/courses">Course Catalog</a></li>
+<li><strong>Take the Assessment</strong>: Find your ideal starting point</li>
+<li><strong>Choose Your Track</strong>: Select based on your interests and goals</li>
+<li><strong>Join the Community</strong>: Connect with fellow learners</li>
+<li><strong>Start Learning</strong>: Begin with RC-101 today!</li>
+</ol>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-industry-partnerships">🤝 Industry Partnerships<a href="https://ars.edu/blog/curriculum-launch#-industry-partnerships" class="hash-link" aria-label="Direct link to 🤝 Industry Partnerships" title="Direct link to 🤝 Industry Partnerships">​</a></h2>
+<p>We're proud to announce curriculum partnerships with:</p>
+<ul>
+<li>Boston Dynamics (Guest lectures)</li>
+<li>NVIDIA (GPU resources for AI track)</li>
+<li>Arduino (Hardware discounts)</li>
+<li>ROS Foundation (Official ROS2 training partner)</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-upcoming-curriculum-events">📅 Upcoming Curriculum Events<a href="https://ars.edu/blog/curriculum-launch#-upcoming-curriculum-events" class="hash-link" aria-label="Direct link to 📅 Upcoming Curriculum Events" title="Direct link to 📅 Upcoming Curriculum Events">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="info-sessions-via-zoom">Info Sessions (Via Zoom)<a href="https://ars.edu/blog/curriculum-launch#info-sessions-via-zoom" class="hash-link" aria-label="Direct link to Info Sessions (Via Zoom)" title="Direct link to Info Sessions (Via Zoom)">​</a></h3>
+<ul>
+<li><strong>Jan 22</strong>: Designer &amp; Hardware Tracks (5 PM UTC)</li>
+<li><strong>Jan 23</strong>: Software &amp; Systems Tracks (5 PM UTC)</li>
+<li><strong>Jan 24</strong>: AI Track Deep Dive (5 PM UTC)</li>
+<li><strong>Jan 25</strong>: Q&amp;A with Instructors (5 PM UTC)</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="live-demonstrations">Live Demonstrations<a href="https://ars.edu/blog/curriculum-launch#live-demonstrations" class="hash-link" aria-label="Direct link to Live Demonstrations" title="Direct link to Live Demonstrations">​</a></h3>
+<ul>
+<li><strong>Jan 26</strong>: SO-101 Arm Assembly Workshop</li>
+<li><strong>Jan 27</strong>: LeRobot Training Demo</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-questions">💬 Questions?<a href="https://ars.edu/blog/curriculum-launch#-questions" class="hash-link" aria-label="Direct link to 💬 Questions?" title="Direct link to 💬 Questions?">​</a></h2>
+<p>Our education team is here to help:</p>
+<ul>
+<li><strong>Email</strong>: <a href="mailto:education@robotcampus.io" target="_blank" rel="noopener noreferrer">education@robotcampus.io</a></li>
+<li><strong>Discord</strong>: #curriculum-questions</li>
+<li><strong>Office Hours</strong>: Daily at 4 PM UTC</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="start-your-journey-today">Start Your Journey Today<a href="https://ars.edu/blog/curriculum-launch#start-your-journey-today" class="hash-link" aria-label="Direct link to Start Your Journey Today" title="Direct link to Start Your Journey Today">​</a></h2>
+<p>The future of robotics is being written now, and you can be part of it. With our comprehensive curriculum, expert instructors, and supportive community, you have everything you need to succeed.</p>
+<p><strong><a href="https://ars.edu/courses">Enroll Now →</a></strong></p>
+<hr>
+<p><em>Robot Campus: From Design to Intelligence - Build the Future of Humanoid Robotics</em></p>]]></content>
+        <author>
+            <name>Prof. Michael Wang</name>
+            <uri>https://ars.edu/team/michael-wang</uri>
+        </author>
+        <author>
+            <name>Robot Campus Contributors</name>
+            <uri>https://ars.edu/community</uri>
+        </author>
+        <category label="Announcements" term="Announcements"/>
+        <category label="Tutorials" term="Tutorials"/>
+        <category label="Beginner Friendly" term="Beginner Friendly"/>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Welcome to Robot Campus - Your Journey Starts Here]]></title>
+        <id>https://ars.edu/blog/welcome-robot-campus</id>
+        <link href="https://ars.edu/blog/welcome-robot-campus"/>
+        <updated>2024-01-15T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[We're thrilled to announce the official launch of Robot Campus - your gateway to mastering humanoid robotics through hands-on, project-based learning. Whether you're a complete beginner or an experienced maker, we have a path designed for you.]]></summary>
+        <content type="html"><![CDATA[<p>We're thrilled to announce the official launch of <strong>Robot Campus</strong> - your gateway to mastering humanoid robotics through hands-on, project-based learning. Whether you're a complete beginner or an experienced maker, we have a path designed for you.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="our-mission">Our Mission<a href="https://ars.edu/blog/welcome-robot-campus#our-mission" class="hash-link" aria-label="Direct link to Our Mission" title="Direct link to Our Mission">​</a></h2>
+<p>Robot Campus exists to democratize robotics education. We believe that the future of humanoid robotics shouldn't be limited to elite institutions or well-funded labs. Through open-source materials, affordable hardware, and a supportive global community, we're making advanced robotics accessible to everyone.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="what-makes-us-different">What Makes Us Different?<a href="https://ars.edu/blog/welcome-robot-campus#what-makes-us-different" class="hash-link" aria-label="Direct link to What Makes Us Different?" title="Direct link to What Makes Us Different?">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="-real-hardware-real-learning">🔧 Real Hardware, Real Learning<a href="https://ars.edu/blog/welcome-robot-campus#-real-hardware-real-learning" class="hash-link" aria-label="Direct link to 🔧 Real Hardware, Real Learning" title="Direct link to 🔧 Real Hardware, Real Learning">​</a></h3>
+<p>Unlike purely theoretical courses, Robot Campus emphasizes building actual robots. Our flagship project, the <strong>SO-100/SO-101 robotic arm</strong>, costs less than $200 to build but teaches principles used in industrial robotics. You'll work with real sensors, actuators, and control systems - not just simulations.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="-cutting-edge-ai-integration">🧠 Cutting-Edge AI Integration<a href="https://ars.edu/blog/welcome-robot-campus#-cutting-edge-ai-integration" class="hash-link" aria-label="Direct link to 🧠 Cutting-Edge AI Integration" title="Direct link to 🧠 Cutting-Edge AI Integration">​</a></h3>
+<p>Through our partnership with the <strong>LeRobot framework</strong>, you'll learn to train robots using the same techniques employed by leading AI labs:</p>
+<ul>
+<li>Imitation learning</li>
+<li>Reinforcement learning</li>
+<li>Sim-to-real transfer</li>
+<li>Computer vision integration</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="-open-source-everything">🌍 Open Source Everything<a href="https://ars.edu/blog/welcome-robot-campus#-open-source-everything" class="hash-link" aria-label="Direct link to 🌍 Open Source Everything" title="Direct link to 🌍 Open Source Everything">​</a></h3>
+<p>All our materials are open source:</p>
+<ul>
+<li>Course content and curricula</li>
+<li>Hardware designs and STL files</li>
+<li>Software and code examples</li>
+<li>Community projects</li>
+</ul>
+<p>You're not just learning - you're contributing to a growing ecosystem.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="five-learning-tracks">Five Learning Tracks<a href="https://ars.edu/blog/welcome-robot-campus#five-learning-tracks" class="hash-link" aria-label="Direct link to Five Learning Tracks" title="Direct link to Five Learning Tracks">​</a></h2>
+<p>We offer specialized paths tailored to different interests and career goals:</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="1-robotic-designer-">1. <strong>Robotic Designer</strong> 🎨<a href="https://ars.edu/blog/welcome-robot-campus#1-robotic-designer-" class="hash-link" aria-label="Direct link to 1-robotic-designer-" title="Direct link to 1-robotic-designer-">​</a></h3>
+<p>Master CAD, 3D printing, and mechanical design. Perfect for those who love creating physical systems.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="2-robotic-hardware-engineer-">2. <strong>Robotic Hardware Engineer</strong> ⚡<a href="https://ars.edu/blog/welcome-robot-campus#2-robotic-hardware-engineer-" class="hash-link" aria-label="Direct link to 2-robotic-hardware-engineer-" title="Direct link to 2-robotic-hardware-engineer-">​</a></h3>
+<p>Dive deep into electronics, sensors, and embedded systems. Build the nervous system of robots.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="3-robotic-software-engineer-">3. <strong>Robotic Software Engineer</strong> 💻<a href="https://ars.edu/blog/welcome-robot-campus#3-robotic-software-engineer-" class="hash-link" aria-label="Direct link to 3-robotic-software-engineer-" title="Direct link to 3-robotic-software-engineer-">​</a></h3>
+<p>Program robots using ROS2, implement control algorithms, and create autonomous behaviors.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="4-robotic-ai-engineer-">4. <strong>Robotic AI Engineer</strong> 🧠<a href="https://ars.edu/blog/welcome-robot-campus#4-robotic-ai-engineer-" class="hash-link" aria-label="Direct link to 4-robotic-ai-engineer-" title="Direct link to 4-robotic-ai-engineer-">​</a></h3>
+<p>Train robots to learn and adapt using machine learning and computer vision.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="5-robotic-systems-engineer-">5. <strong>Robotic Systems Engineer</strong> 🔧<a href="https://ars.edu/blog/welcome-robot-campus#5-robotic-systems-engineer-" class="hash-link" aria-label="Direct link to 5-robotic-systems-engineer-" title="Direct link to 5-robotic-systems-engineer-">​</a></h3>
+<p>Integrate complete systems and deploy production-ready robots.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="getting-started">Getting Started<a href="https://ars.edu/blog/welcome-robot-campus#getting-started" class="hash-link" aria-label="Direct link to Getting Started" title="Direct link to Getting Started">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="step-1-choose-your-track">Step 1: Choose Your Track<a href="https://ars.edu/blog/welcome-robot-campus#step-1-choose-your-track" class="hash-link" aria-label="Direct link to Step 1: Choose Your Track" title="Direct link to Step 1: Choose Your Track">​</a></h3>
+<p>Review our <a href="https://ars.edu/docs/tracks/overview">Learning Tracks Overview</a> to find the path that matches your interests and goals.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="step-2-join-the-community">Step 2: Join the Community<a href="https://ars.edu/blog/welcome-robot-campus#step-2-join-the-community" class="hash-link" aria-label="Direct link to Step 2: Join the Community" title="Direct link to Step 2: Join the Community">​</a></h3>
+<ul>
+<li><strong>Discord</strong>: <a href="https://discord.gg/robotcampus" target="_blank" rel="noopener noreferrer">Join our server</a> for real-time help and discussions</li>
+<li><strong>GitHub</strong>: Star our repositories and contribute</li>
+<li><strong>Forum</strong>: Engage in deeper technical discussions</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="step-3-set-up-your-workspace">Step 3: Set Up Your Workspace<a href="https://ars.edu/blog/welcome-robot-campus#step-3-set-up-your-workspace" class="hash-link" aria-label="Direct link to Step 3: Set Up Your Workspace" title="Direct link to Step 3: Set Up Your Workspace">​</a></h3>
+<p>Depending on your track, you'll need:</p>
+<ul>
+<li>A computer (Windows, Mac, or Linux)</li>
+<li>Basic tools (varies by track)</li>
+<li>Optional: 3D printer access, Arduino/Raspberry Pi</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="step-4-start-learning">Step 4: Start Learning<a href="https://ars.edu/blog/welcome-robot-campus#step-4-start-learning" class="hash-link" aria-label="Direct link to Step 4: Start Learning" title="Direct link to Step 4: Start Learning">​</a></h3>
+<p>Begin with our foundation courses (RC-101 through RC-106) that all students complete, then dive into your specialized track.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="success-stories-already-emerging">Success Stories Already Emerging<a href="https://ars.edu/blog/welcome-robot-campus#success-stories-already-emerging" class="hash-link" aria-label="Direct link to Success Stories Already Emerging" title="Direct link to Success Stories Already Emerging">​</a></h2>
+<p>Even in our beta phase, students have achieved amazing things:</p>
+<ul>
+<li>Maria built a chess-playing robot that's beaten several club players</li>
+<li>Alex's agricultural robot prototype attracted seed funding</li>
+<li>The Berlin study group created a swarm of mini-robots that dance in sync</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="whats-coming-next">What's Coming Next?<a href="https://ars.edu/blog/welcome-robot-campus#whats-coming-next" class="hash-link" aria-label="Direct link to What's Coming Next?" title="Direct link to What's Coming Next?">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="q1-2024">Q1 2024<a href="https://ars.edu/blog/welcome-robot-campus#q1-2024" class="hash-link" aria-label="Direct link to Q1 2024" title="Direct link to Q1 2024">​</a></h3>
+<ul>
+<li>Launch of advanced AI courses</li>
+<li>New simulation environments</li>
+<li>Industry partnership announcements</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="q2-2024">Q2 2024<a href="https://ars.edu/blog/welcome-robot-campus#q2-2024" class="hash-link" aria-label="Direct link to Q2 2024" title="Direct link to Q2 2024">​</a></h3>
+<ul>
+<li>Summer hackathon with $10,000 in prizes</li>
+<li>Certification program launch</li>
+<li>Mobile app for learning on the go</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="q3-2024">Q3 2024<a href="https://ars.edu/blog/welcome-robot-campus#q3-2024" class="hash-link" aria-label="Direct link to Q3 2024" title="Direct link to Q3 2024">​</a></h3>
+<ul>
+<li>Regional meetups in 10+ cities</li>
+<li>Advanced hardware kits</li>
+<li>Research paper collaborations</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="join-us-in-building-the-future">Join Us in Building the Future<a href="https://ars.edu/blog/welcome-robot-campus#join-us-in-building-the-future" class="hash-link" aria-label="Direct link to Join Us in Building the Future" title="Direct link to Join Us in Building the Future">​</a></h2>
+<p>The robotics revolution isn't coming - it's here. And you can be part of it. Whether you dream of working at Boston Dynamics, starting your own robotics company, or simply understanding the technology shaping our future, Robot Campus is your launchpad.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="special-launch-offer">Special Launch Offer<a href="https://ars.edu/blog/welcome-robot-campus#special-launch-offer" class="hash-link" aria-label="Direct link to Special Launch Offer" title="Direct link to Special Launch Offer">​</a></h3>
+<p>For our first 1,000 students:</p>
+<ul>
+<li><strong>Free lifetime access</strong> to all foundation courses</li>
+<li><strong>50% discount</strong> on hardware kits</li>
+<li><strong>Exclusive</strong> founding member badge</li>
+<li><strong>Priority access</strong> to new courses and features</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="your-journey-starts-now">Your Journey Starts Now<a href="https://ars.edu/blog/welcome-robot-campus#your-journey-starts-now" class="hash-link" aria-label="Direct link to Your Journey Starts Now" title="Direct link to Your Journey Starts Now">​</a></h2>
+<p>Don't wait for the future - build it. Join thousands of students worldwide who are learning, building, and innovating together.</p>
+<p><strong><a href="https://ars.edu/docs/introduction/welcome">Start Learning Today →</a></strong></p>
+<hr>
+<p><em>Questions? Reach out at <a href="mailto:hello@robotcampus.io" target="_blank" rel="noopener noreferrer">hello@robotcampus.io</a> or join our <a href="https://discord.gg/robotcampus" target="_blank" rel="noopener noreferrer">Discord community</a>.</em></p>
+<p><em>Follow us on <a href="https://twitter.com/robotcampus" target="_blank" rel="noopener noreferrer">Twitter</a> | <a href="https://linkedin.com/company/robot-campus" target="_blank" rel="noopener noreferrer">LinkedIn</a> | <a href="https://youtube.com/@robotcampus" target="_blank" rel="noopener noreferrer">YouTube</a></em></p>]]></content>
+        <author>
+            <name>Robot Campus Contributors</name>
+            <uri>https://ars.edu/community</uri>
+        </author>
+        <author>
+            <name>Dr. Sarah Chen</name>
+            <uri>https://ars.edu/team/sarah-chen</uri>
+        </author>
+        <category label="Announcements" term="Announcements"/>
+        <category label="Community" term="Community"/>
+        <category label="Beginner Friendly" term="Beginner Friendly"/>
+    </entry>
+</feed>
