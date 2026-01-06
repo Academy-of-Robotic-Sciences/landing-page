@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkacademy_robotic_sciences=self.webpackChunkacademy_robotic_sciences||[]).push([[1903],{1912:e=>{e.exports=JSON.parse('{"blogBasePath":"/landing-page/blog","blogTitle":"Blog","authorsListPath":"/landing-page/blog/authors"}')}}]);
