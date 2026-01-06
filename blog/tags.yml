@@ -1,0 +1,59 @@
+announcements:
+  label: Announcements
+  permalink: /announcements
+  description: Official Academy of Robotic Sciences announcements and news
+
+tutorials:
+  label: Tutorials
+  permalink: /tutorials
+  description: Step-by-step technical tutorials and guides
+
+projects:
+  label: Student Projects
+  permalink: /projects
+  description: Showcase of student projects and achievements
+
+industry:
+  label: Industry News
+  permalink: /industry
+  description: Industry partnerships and career opportunities
+
+research:
+  label: Research
+  permalink: /research
+  description: Academic research and papers in robotics
+
+events:
+  label: Events
+  permalink: /events
+  description: Workshops, hackathons, and competitions
+
+ai-ml:
+  label: AI & Machine Learning
+  permalink: /ai-ml
+  description: Artificial intelligence and machine learning in robotics
+
+hardware:
+  label: Hardware
+  permalink: /hardware
+  description: Electronics, sensors, and embedded systems
+
+software:
+  label: Software
+  permalink: /software
+  description: Programming, ROS2, and control systems
+
+design:
+  label: Design
+  permalink: /design
+  description: CAD, 3D printing, and mechanical design
+
+community:
+  label: Community
+  permalink: /community
+  description: Community stories and contributions
+
+beginner:
+  label: Beginner Friendly
+  permalink: /beginner
+  description: Content suitable for beginners

@@ -1,0 +1,60 @@
+/**
+ * Professional Styling for Homepage Features
+ */
+
+.features {
+  padding: 80px 0;
+  background: var(--ifm-background-color);
+}
+
+.featureCard {
+  padding: 32px 24px;
+  height: 100%;
+  background: var(--ifm-background-surface-color);
+  border-radius: 12px;
+  border: 1px solid var(--ifm-color-emphasis-200);
+  transition: all 0.2s ease;
+  text-align: center;
+}
+
+.featureCard:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--ifm-color-primary);
+}
+
+.featureIcon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.1) 0%, rgba(124, 58, 237, 0.1) 100%);
+  border-radius: 16px;
+  color: var(--ifm-color-primary);
+}
+
+.featureContent h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: var(--ifm-color-content);
+}
+
+.featureContent p {
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--ifm-color-content-secondary);
+  margin: 0;
+}
+
+@media (max-width: 996px) {
+  .features {
+    padding: 60px 0;
+  }
+
+  .featureCard {
+    margin-bottom: 24px;
+  }
+}

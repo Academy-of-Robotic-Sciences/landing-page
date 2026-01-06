@@ -1,0 +1,637 @@
+/**
+ * Professional CSS for Academy of Robotic Sciences Homepage
+ * Clean, modern, and tech-forward design
+ */
+
+/* Hero Section */
+.heroBanner {
+  padding: 80px 0 100px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #2563EB 0%, #7C3AED 100%);
+}
+
+.heroContent {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  margin: 0 auto;
+  animation: fadeIn 0.6s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.heroIcon {
+  color: white;
+  margin-bottom: 24px;
+  opacity: 0.95;
+}
+
+.heroTitle {
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 16px;
+  line-height: 1.2;
+}
+
+.heroSubtitle {
+  font-size: 1.5rem;
+  color: rgba(255, 255, 255, 0.95);
+  margin-bottom: 16px;
+  font-weight: 400;
+}
+
+.heroDescription {
+  font-size: 1.125rem;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 32px;
+  line-height: 1.6;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.heroButtons {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  margin-bottom: 48px;
+  flex-wrap: wrap;
+}
+
+.primaryButton,
+.secondaryButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.buttonIcon {
+  transition: transform 0.2s ease;
+}
+
+.primaryButton:hover .buttonIcon {
+  transform: translateX(4px);
+}
+
+.heroStats {
+  display: flex;
+  gap: 32px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 24px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.statNumber {
+  font-size: 2rem;
+  font-weight: 700;
+  color: white;
+  line-height: 1;
+}
+
+.statLabel {
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.85);
+  font-weight: 500;
+}
+
+.statDivider {
+  width: 1px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Stats Section */
+.statsSection {
+  padding: 80px 0;
+  background: var(--ifm-background-surface-color);
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 32px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.statCard {
+  text-align: center;
+  padding: 32px 16px;
+  background: var(--ifm-background-color);
+  border-radius: 8px;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.2s ease;
+}
+
+.statCard:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.statIcon {
+  color: var(--ifm-color-primary);
+  margin-bottom: 16px;
+}
+
+.statValue {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--ifm-color-primary);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.statDesc {
+  font-size: 1rem;
+  color: var(--ifm-color-content-secondary);
+  font-weight: 500;
+}
+
+/* Section Headers */
+.sectionHeader {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.sectionHeader h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: var(--ifm-color-content);
+}
+
+.sectionHeader p {
+  font-size: 1.125rem;
+  color: var(--ifm-color-content-secondary);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.sectionFooter {
+  text-align: center;
+  margin-top: 48px;
+}
+
+/* Tracks Section */
+.tracksSection {
+  padding: 80px 0;
+  background: var(--ifm-background-color);
+}
+
+.tracksGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.trackCard {
+  background: var(--ifm-background-color);
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: 12px;
+  padding: 32px 24px;
+  text-align: center;
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+}
+
+.trackCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--track-color);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.trackCard:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--track-color);
+}
+
+.trackCard:hover::before {
+  opacity: 1;
+}
+
+.trackIconWrapper {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--ifm-background-surface-color);
+  border-radius: 12px;
+  color: var(--track-color);
+}
+
+.trackCard h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--ifm-color-content);
+}
+
+.trackDuration {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  justify-content: center;
+  font-size: 0.875rem;
+  color: var(--ifm-color-content-secondary);
+  margin-bottom: 12px;
+}
+
+.trackDesc {
+  font-size: 0.9375rem;
+  color: var(--ifm-color-content-secondary);
+  line-height: 1.5;
+  flex-grow: 1;
+  margin-bottom: 20px;
+}
+
+.trackArrow {
+  color: var(--track-color);
+  transition: transform 0.2s ease;
+}
+
+.trackCard:hover .trackArrow {
+  transform: translateX(4px);
+}
+
+.helpCard {
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.05) 0%, rgba(124, 58, 237, 0.05) 100%);
+  border: 2px dashed var(--ifm-color-primary);
+}
+
+.helpCard .trackIconWrapper {
+  background: rgba(37, 99, 235, 0.1);
+  color: var(--ifm-color-primary);
+}
+
+/* Projects Section */
+.projectsSection {
+  padding: 80px 0;
+  background: var(--ifm-background-surface-color);
+}
+
+.projectsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 32px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.projectCard {
+  background: var(--ifm-background-color);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.2s ease;
+}
+
+.projectCard:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.projectIcon {
+  padding: 48px;
+  text-align: center;
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.1) 0%, rgba(124, 58, 237, 0.1) 100%);
+  color: var(--ifm-color-primary);
+}
+
+.projectContent {
+  padding: 24px;
+}
+
+.projectContent h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: var(--ifm-color-content);
+}
+
+.projectContent p {
+  font-size: 0.9375rem;
+  color: var(--ifm-color-content-secondary);
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+.projectMeta {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.projectDifficulty,
+.projectDuration {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.875rem;
+  color: var(--ifm-color-content-secondary);
+  padding: 6px 12px;
+  background: var(--ifm-background-surface-color);
+  border-radius: 6px;
+}
+
+/* Schedules Section */
+.schedulesSection {
+  padding: 80px 0;
+  background: var(--ifm-background-color);
+}
+
+.schedulesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.scheduleCard {
+  background: var(--ifm-background-surface-color);
+  border-radius: 12px;
+  padding: 32px 24px;
+  text-align: center;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+}
+
+.scheduleCard:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--ifm-color-primary);
+}
+
+.scheduleIcon {
+  color: var(--ifm-color-primary);
+  margin-bottom: 16px;
+}
+
+.scheduleCard h3 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--ifm-color-content);
+}
+
+.scheduleDuration {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  justify-content: center;
+  font-size: 0.875rem;
+  color: var(--ifm-color-primary);
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+
+.scheduleDesc {
+  font-size: 0.9375rem;
+  color: var(--ifm-color-content-secondary);
+  line-height: 1.5;
+  margin-bottom: 12px;
+}
+
+.scheduleBest {
+  font-size: 0.875rem;
+  color: var(--ifm-color-content);
+  font-weight: 500;
+}
+
+/* Testimonials Section */
+.testimonialsSection {
+  padding: 80px 0;
+  background: var(--ifm-background-surface-color);
+}
+
+.testimonialsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 32px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.testimonialCard {
+  background: var(--ifm-background-color);
+  border-radius: 12px;
+  padding: 32px;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.2s ease;
+}
+
+.testimonialCard:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.testimonialQuote {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--ifm-color-content);
+  margin-bottom: 24px;
+  font-style: italic;
+}
+
+.testimonialAuthor {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.testimonialAvatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #2563EB 0%, #7C3AED 100%);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.testimonialName {
+  font-weight: 600;
+  color: var(--ifm-color-content);
+  font-size: 0.9375rem;
+  margin-bottom: 4px;
+}
+
+.testimonialRole {
+  font-size: 0.875rem;
+  color: var(--ifm-color-content-secondary);
+}
+
+/* CTA Section */
+.ctaSection {
+  padding: 80px 0;
+  background: linear-gradient(135deg, #2563EB 0%, #7C3AED 100%);
+}
+
+.ctaContent {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.ctaIcon {
+  color: white;
+  margin-bottom: 24px;
+}
+
+.ctaContent h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 16px;
+}
+
+.ctaContent p {
+  font-size: 1.125rem;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 32px;
+}
+
+.ctaButtons {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+}
+
+.ctaButtons .button {
+  background: white;
+  color: var(--ifm-color-primary);
+  border: none;
+}
+
+.ctaButtons .button:hover {
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.ctaButtons .button--secondary {
+  background: transparent;
+  border: 2px solid white;
+  color: white;
+}
+
+.ctaButtons .button--secondary:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.ctaFeatures {
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.ctaFeatures span {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: white;
+  font-weight: 500;
+  font-size: 0.9375rem;
+}
+
+/* Responsive Design */
+@media (max-width: 996px) {
+  .heroTitle {
+    font-size: 2.5rem;
+  }
+
+  .heroSubtitle {
+    font-size: 1.25rem;
+  }
+
+  .heroDescription {
+    font-size: 1rem;
+  }
+
+  .sectionHeader h2 {
+    font-size: 2rem;
+  }
+
+  .heroStats {
+    gap: 16px;
+  }
+
+  .statNumber {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .heroTitle {
+    font-size: 2rem;
+  }
+
+  .heroSubtitle {
+    font-size: 1.125rem;
+  }
+
+  .heroBanner {
+    padding: 60px 0 80px;
+  }
+
+  .heroButtons {
+    flex-direction: column;
+  }
+
+  .heroStats {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .statDivider {
+    display: none;
+  }
+
+  .ctaContent h2 {
+    font-size: 2rem;
+  }
+}

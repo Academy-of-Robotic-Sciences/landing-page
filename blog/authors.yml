@@ -1,0 +1,67 @@
+ars-official:
+  name: ARS Team
+  title: Official Academy of Robotic Sciences
+  url: https://ars.edu
+  image_url: https://github.com/academy-robotic-sciences.png
+  page: true
+  socials:
+    x: ARS_Official
+    linkedin: academy-robotic-sciences
+    github: academy-robotic-sciences
+    youtube: ARS_Official
+
+sarah-chen:
+  name: Dr. Sarah Chen
+  title: Lead Instructor - Robotic Design
+  url: https://ars.edu/team/sarah-chen
+  image_url: https://github.com/sarah-chen.png
+  page: true
+  socials:
+    linkedin: sarahchen-robotics
+    github: sarahchen
+
+michael-wang:
+  name: Prof. Michael Wang
+  title: Mathematics & Control Theory Expert
+  url: https://ars.edu/team/michael-wang
+  image_url: https://github.com/michael-wang.png
+  page: true
+  socials:
+    linkedin: michaelwang-robotics
+    github: mwang-robotics
+
+lisa-park:
+  name: Dr. Lisa Park
+  title: AI & Machine Learning Lead
+  url: https://ars.edu/team/lisa-park
+  image_url: https://github.com/lisa-park.png
+  page: true
+  socials:
+    linkedin: lisapark-ai
+    github: lisapark
+    x: lisapark_ai
+
+alex-rivera:
+  name: Alex Rivera
+  title: Hardware Engineering Instructor
+  url: https://ars.edu/team/alex-rivera
+  image_url: https://github.com/alex-rivera.png
+  socials:
+    linkedin: alexrivera-hardware
+    github: arivera-robotics
+
+student-spotlight:
+  name: Student Contributors
+  title: ARS Students
+  url: https://ars.edu/community
+  image_url: https://github.com/ars-students.png
+  socials:
+    github: ars-community
+
+robot-campus:
+  name: Robot Campus Contributors
+  title: ARS Faculty
+  url: https://ars.edu/community
+  image_url: https://github.com/ars-faculty.png
+  socials:
+    github: ars-faculty

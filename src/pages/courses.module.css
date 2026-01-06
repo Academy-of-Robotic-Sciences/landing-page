@@ -1,0 +1,381 @@
+/**
+ * CSS for Academy of Robotic Sciences Courses Page
+ */
+
+/* Hero Section */
+.heroBanner {
+  padding: 80px 0 100px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #7C3AED 0%, #2563EB 100%);
+}
+
+.heroContent {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  margin: 0 auto;
+  animation: fadeIn 0.6s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.heroIcon {
+  color: white;
+  margin-bottom: 24px;
+  opacity: 0.95;
+}
+
+.heroTitle {
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 16px;
+  line-height: 1.2;
+}
+
+.heroSubtitle {
+  font-size: 1.5rem;
+  color: rgba(255, 255, 255, 0.95);
+  margin-bottom: 16px;
+  font-weight: 400;
+}
+
+.heroDescription {
+  font-size: 1.125rem;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 0;
+  line-height: 1.6;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Section Headers */
+.sectionHeader {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.sectionHeader h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: var(--ifm-color-content);
+}
+
+.sectionHeader p {
+  font-size: 1.125rem;
+  color: var(--ifm-color-content-secondary);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Tracks Section */
+.tracksSection {
+  padding: 80px 0;
+  background: var(--ifm-background-color);
+}
+
+.tracksGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.trackCard {
+  background: var(--ifm-background-color);
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: 12px;
+  padding: 32px 24px;
+  text-align: center;
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.trackCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--track-color);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.trackCard:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--track-color);
+}
+
+.trackCard:hover::before {
+  opacity: 1;
+}
+
+.trackIconWrapper {
+  width: 72px;
+  height: 72px;
+  margin: 0 auto 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--ifm-background-surface-color);
+  border-radius: 16px;
+  color: var(--track-color);
+}
+
+.trackCard h3 {
+  font-size: 1.375rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--ifm-color-content);
+}
+
+.trackDuration {
+  font-size: 0.875rem;
+  color: var(--track-color);
+  margin-bottom: 16px;
+  font-weight: 600;
+}
+
+.trackDesc {
+  font-size: 0.9375rem;
+  color: var(--ifm-color-content-secondary);
+  line-height: 1.6;
+  margin-bottom: 20px;
+  flex-grow: 1;
+}
+
+.trackSkills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+
+.skillTag {
+  font-size: 0.75rem;
+  padding: 4px 10px;
+  background: var(--ifm-background-surface-color);
+  border-radius: 4px;
+  color: var(--ifm-color-content-secondary);
+  font-weight: 500;
+}
+
+.trackButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: center;
+  padding: 12px 24px;
+  background: var(--track-color);
+  color: white;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.trackButton:hover {
+  opacity: 0.9;
+  color: white;
+  text-decoration: none;
+  transform: translateY(-2px);
+}
+
+/* Why ARS Section */
+.whySection {
+  padding: 80px 0;
+  background: var(--ifm-background-surface-color);
+}
+
+.featuresGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 32px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.featureCard {
+  text-align: center;
+  padding: 32px 24px;
+  background: var(--ifm-background-color);
+  border-radius: 12px;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.2s ease;
+}
+
+.featureCard:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.featureIcon {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.1) 0%, rgba(124, 58, 237, 0.1) 100%);
+  border-radius: 16px;
+  color: var(--ifm-color-primary);
+}
+
+.featureCard h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: var(--ifm-color-content);
+}
+
+.featureCard p {
+  font-size: 0.9375rem;
+  color: var(--ifm-color-content-secondary);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* CTA Section */
+.ctaSection {
+  padding: 80px 0;
+  background: linear-gradient(135deg, #2563EB 0%, #7C3AED 100%);
+}
+
+.ctaContent {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.ctaIcon {
+  color: white;
+  margin-bottom: 24px;
+}
+
+.ctaContent h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 16px;
+}
+
+.ctaContent p {
+  font-size: 1.125rem;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 32px;
+}
+
+.ctaButtons {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+}
+
+.ctaButtons .button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.buttonIcon {
+  transition: transform 0.2s ease;
+}
+
+.ctaButtons .button:hover .buttonIcon {
+  transform: translateX(4px);
+}
+
+.ctaFeatures {
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.ctaFeatures span {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: white;
+  font-weight: 500;
+  font-size: 0.9375rem;
+}
+
+/* Responsive Design */
+@media (max-width: 996px) {
+  .heroTitle {
+    font-size: 2.5rem;
+  }
+
+  .heroSubtitle {
+    font-size: 1.25rem;
+  }
+
+  .heroDescription {
+    font-size: 1rem;
+  }
+
+  .sectionHeader h2 {
+    font-size: 2rem;
+  }
+
+  .tracksGrid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .heroTitle {
+    font-size: 2rem;
+  }
+
+  .heroSubtitle {
+    font-size: 1.125rem;
+  }
+
+  .heroBanner {
+    padding: 60px 0 80px;
+  }
+
+  .ctaContent h2 {
+    font-size: 2rem;
+  }
+
+  .ctaButtons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .ctaFeatures {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .tracksGrid {
+    grid-template-columns: 1fr;
+  }
+}
