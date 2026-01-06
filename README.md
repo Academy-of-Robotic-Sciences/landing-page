@@ -1,25 +1,33 @@
-# Website
+# Academy of Robotic Sciences (ARS)
 
-This website is built using [Docusaurus](https://docusaurus.io/), a modern static website generator.
+> Building the Next Generation of Humanoid Robotics
 
-## Installation
+The official website for the Academy of Robotic Sciences - an open-source robotics education platform. Built with [Docusaurus](https://docusaurus.io/).
+
+## Quick Start
 
 ```bash
+# Install dependencies
 yarn
-```
 
-## Local Development
-
-```bash
+# Start development server
 yarn start
-```
 
-This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
-
-## Build
-
-```bash
+# Build for production
 yarn build
 ```
 
-This command generates static content into the `build` directory and can be served using any static contents hosting service.
+## Project Structure
+
+```
+/docs              # Documentation & learning tracks
+/src/pages         # Custom pages (homepage, courses)
+/static            # Static assets (images, logo)
+/blog              # Blog posts & announcements
+```
+
+## Links
+
+- **Website**: https://academy-of-robotic-sciences.github.io/robot-campus/
+- **Courses**: https://academy-of-robotic-sciences.github.io/courses/
+- **GitHub**: https://github.com/Academy-of-Robotic-Sciences

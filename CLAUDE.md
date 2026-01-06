@@ -37,20 +37,33 @@ Make humanoid robotics education **accessible, open-source, and hands-on**, crea
 ---
 
 ## Structure (Docusaurus)
-/docs
-  introduction/brand-context.md
-  tracks/{design,hardware,control,ai,systems}
-  projects/{so101-arm,lerobot-pickplace,custom-gripper}
-  community/{contributing,showcase,events}
+
+```
+/docs                    # Documentation & learning tracks
+  introduction/          # Welcome, brand context
+  tracks/                # Design, Hardware, Software, AI, Systems
+  projects/              # SO-101 arm, LeRobot, 3D prototyping
+  community/             # Contributing, showcase, events
+/src/pages               # Custom pages
+  index.tsx              # Homepage
+  courses.tsx            # Courses landing page
+/static/img              # Logo and images
+/blog                    # Announcements & tutorials
+```
+
+## External Courses
+
+Courses are hosted separately at: https://academy-of-robotic-sciences.github.io/courses/
+
+Courses use LiaScript for interactive delivery:
+```
+https://LiaScript.github.io/course/?https://raw.githubusercontent.com/Academy-of-Robotic-Sciences/courses/main/{track}/{course}.md
+```
 
 ---
 
 ## Style
 Hands-on • Open • Community-driven • Future-oriented
 
-## Course write guide
-To write good courses, read our writing guide [here](/writing-guide.md).
-
-## Project
-
-@README.md
+## Course Writing Guide
+To write good courses, read our [writing guide](/writing-guide.md).
