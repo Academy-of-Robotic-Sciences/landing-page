@@ -28,6 +28,6 @@ yarn build
 
 ## Links
 
-- **Website**: https://academy-of-robotic-sciences.github.io/robot-campus/
+- **Website**: https://academy-of-robotic-sciences.github.io/landing-page/
 - **Courses**: https://academy-of-robotic-sciences.github.io/courses/
 - **GitHub**: https://github.com/Academy-of-Robotic-Sciences

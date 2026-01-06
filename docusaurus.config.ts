@@ -15,15 +15,14 @@ const config: Config = {
   },
 
   // Set the production url of your site here
-  url: 'https://ars.edu',
+  url: 'https://academy-of-robotic-sciences.github.io',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/',
+  baseUrl: '/landing-page/',
 
   // GitHub pages deployment config.
-  // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'academy-robotic-sciences', // Usually your GitHub org/user name.
-  projectName: 'academy-robotic-sciences', // Usually your repo name.
+  organizationName: 'Academy-of-Robotic-Sciences',
+  projectName: 'landing-page',
 
   onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
